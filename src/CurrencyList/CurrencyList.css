@@ -1,0 +1,9 @@
+.currency-item {
+    display: inline-block;
+    border: solid grey 1px;
+    width: 100px;
+    height: 100px;
+    background-color: rgb(255, 248, 209);
+    margin: 5px;
+    
+}
