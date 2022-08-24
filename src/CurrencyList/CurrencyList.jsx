@@ -10,14 +10,14 @@ const CurrencyList = () => {
   const dispatch = useDispatch();
   const currencyItems = useSelector((state) => state.currencyList.currency);
   console.log("currencyItems >>>>> ", currencyItems);
-  const ratesData = [];
-
+  
   const getCurrencyList = () => {
+    const ratesData = [];
     axios.get("https://www.cbr-xml-daily.ru/latest.js").then((response) => {
       console.log("response >>>> ", response);
       const dataObjToArrTransform = Object.entries(response.data.rates);
       dataObjToArrTransform.forEach(([key, value]) => {
-        ratesData.push({ currencyName: key, currencyPrice: value });
+        ratesData.push({ currencyName: key, currencyPrice: value=(1/value).toFixed(2) });
       });
       console.log("ratesData >>>> ", ratesData);
       dispatch(setCurrencyList(ratesData))
