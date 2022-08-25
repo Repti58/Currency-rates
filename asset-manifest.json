@@ -1,0 +1,15 @@
+{
+  "files": {
+    "main.css": "/Currency-rates-board/static/css/main.70548bd8.css",
+    "main.js": "/Currency-rates-board/static/js/main.e27750d1.js",
+    "static/js/787.fec58e52.chunk.js": "/Currency-rates-board/static/js/787.fec58e52.chunk.js",
+    "index.html": "/Currency-rates-board/index.html",
+    "main.70548bd8.css.map": "/Currency-rates-board/static/css/main.70548bd8.css.map",
+    "main.e27750d1.js.map": "/Currency-rates-board/static/js/main.e27750d1.js.map",
+    "787.fec58e52.chunk.js.map": "/Currency-rates-board/static/js/787.fec58e52.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.70548bd8.css",
+    "static/js/main.e27750d1.js"
+  ]
+}
