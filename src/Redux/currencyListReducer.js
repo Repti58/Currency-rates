@@ -7,7 +7,7 @@ const initialState = {
 };
 
 const currencyListReducer = (state = initialState, action) => {
-  debugger;
+  
   switch (action.type) {
     case "SET_CURRENCY_LIST": {
       return {
