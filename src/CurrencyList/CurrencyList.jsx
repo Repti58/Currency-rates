@@ -51,12 +51,11 @@ const CurrencyList = () => {
             />
           </div>
         ))}
-        {/* <div className="currency-item">1</div>
-        <div className="currency-item">2</div>
-        <div className="currency-item">3</div>
-        <div className="currency-item">4</div>
-        <div className="currency-item">5</div>
-        <div className="currency-item">6</div> */}
+       
+      </div>
+      <div className="footer">
+
+      <a href="https://www.cbr-xml-daily.ru/">Курсы ЦБ РФ в XML и JSON, API</a>
       </div>
     </div>
   );
