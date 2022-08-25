@@ -1,9 +1,9 @@
 const CurrencyItem = (props) => {
 return (
     <div>
-        <div>{props.currencyTicker}</div>
-        <div>{props.currencyName}</div>
-        <div>{props.currencyPrice}</div>
+        <div className="currency-item__currency-name">{props.currencyName}</div>
+        <div className="currency-item__currency-ticker">{props.currencyTicker}</div>
+        <div className="currency-item__currency-price">{props.currencyPrice}</div>
     </div>
 )
 }

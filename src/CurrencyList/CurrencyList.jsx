@@ -36,11 +36,12 @@ const CurrencyList = () => {
     debugger;
     getCurrencyList();
   }, []);
+  const date = new Date().toLocaleDateString()
   return (
-    <div>
-      <p>Курсы валют</p>
-      <button onClick={() => getCurrencyList()}>Get list</button>
-      <div>
+    <div className="wrapper">
+      <p>Курсы иностранных валют к рублю (RUB) на {date}</p>
+      {/* <button onClick={() => getCurrencyList()}>Get list</button> */}
+      <div className="currency-item-wrapper">
         {currencyItems.map((i) => (
           <div className="currency-item">
             <CurrencyItem
