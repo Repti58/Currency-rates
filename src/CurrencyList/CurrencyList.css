@@ -35,8 +35,18 @@ p {
 .currency-item__currency-name {
   font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
   font-size: smaller;
-  width: 80px;
+  width: 100px;
   min-height: 70px;
+  font-weight: 600;
+
+  color: rgb(41, 41, 41);
+}
+
+.currency-item__currency-nominal {
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  font-size: smaller;
+  /* width: 80px; */
+  /* min-height: 30px; */
   font-weight: 600;
 
   color: rgb(41, 41, 41);

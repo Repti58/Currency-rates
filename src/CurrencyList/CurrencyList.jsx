@@ -34,46 +34,19 @@ const CurrencyList = () => {
     });
 
     const merge = [];
+
     for (let i = 0; i < ratesDataToday.length; i++) {
       merge.push({
         currencyTicker: ratesDataToday[i].CharCode._text,
         currencyName: ratesDataToday[i].Name._text,
         currencyNominal: ratesDataToday[i].Nominal._text,
-        currencyPriceToday: ratesDataToday[i].Value._text,
-        currencyPriceYesterday: ratesDataYesterday[i].Value._text,
+        currencyPriceToday: String(Number((ratesDataToday[i].Value._text).replace(',', '.')).toFixed(2)),
+        currencyPriceYesterday: String(Number((ratesDataYesterday[i].Value._text).replace(',', '.')).toFixed(2)),
       });
     }
 
     dispatch(setCurrencyList(merge));
-
-    // axios.get('http://www.cbr.ru/scripts/XML_daily.asp', {mode: 'no-cors'})
-    // .then((response) => {
-
-    //     response = response.data
-    //     console.log('response >>>>> ', response);
-    //     console.log(convert.xml2json(response, {compact: true, spaces: 4}));
-    // })
-    // .catch((error) => {
-    //   console.log(`error >>>>` , error.response);
-    // })
-
-    // axios.get("https://www.cbr-xml-daily.ru/daily_json.js")
-    // .then((response) => {
-    //   console.log("response >>>> ", response);
-    //   const dataObjToArrTransform = Object.entries(response.data.Valute);
-
-    //   dataObjToArrTransform.forEach(([key, value]) => {
-    //     ratesData.push({
-    //       currencyTicker: key,
-    //       currencyName: getCurrencyName(key),
-    //       currencyPrice: value.Value.toFixed(2),
-    //       previous: value.Previous.toFixed(2),
-    //     });
-    //   });
-    //   console.log("ratesData >>>> ", ratesData);
-    //   dispatch(setCurrencyList(ratesData));
-    // })
-    // .catch((error) => console.log(`error >>>>>`, error.response));
+    
   };
 
   useEffect(() => {
