@@ -1,11 +1,16 @@
+import { configureStore } from "@reduxjs/toolkit";
 import { combineReducers, legacy_createStore } from "redux";
-import currencyListReducer from "./currencyListReducer";
+import currencySlice from "./currencySlice";
 
-const reducers = combineReducers({
-    currencyList: currencyListReducer,
+// const reducers = combineReducers({
+//     currencyList: currencyListReducer,
+// })
+
+const store = configureStore ({
+reducer: {
+    currencySlice    
+}
 })
-
-const store = legacy_createStore(reducers)
 
 window.store = store
 

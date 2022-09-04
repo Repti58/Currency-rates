@@ -3,46 +3,59 @@ import { useDispatch, useSelector } from "react-redux";
 import CurrencyItem from "./CurrencyItem/CurrencyItem";
 import "./CurrencyList.css";
 // import xml2js from 'xml2js'
-import { setCurrencyList } from "../Redux/currencyListReducer";
+import { setCurrencyList } from "../Redux/currencySlice";
 import getCurrencyName from "./getCurrencyName";
 // import { parseString } from 'xml2js';
-var convert = require('xml-js');
-const axios = require('axios').default;
+var convert = require("xml-js");
+const axios = require("axios").default;
 // const parseString = require('xml2js').parseString;
 
-
 const CurrencyList = () => {
-  debugger
   const dispatch = useDispatch();
-  const currencyItems = useSelector((state) => state.currencyList.currency);
+  const currencyItems = useSelector((state) => state.currencySlice.currency);
   console.log("currencyItems >>>>> ", currencyItems);
 
   const getCurrencyList = async () => {
-    debugger
-    const ratesData = [];
+    let ratesDataToday = [];
+    let ratesDataYesterday = [];
 
+    await axios.get("http://localhost:3003/today").then((response) => {
+      const currencyData = response.data.ValCurs.Valute;
+      console.log("currencyData >>>>> ", currencyData);
+      ratesDataToday = currencyData;
+      console.log("ratesDataToday>>>>>>>>>>>", ratesDataToday);
+    });
 
-let res = await fetch('http://localhost:3003/api')
-res = await res.json()
-  
-  console.log('response >>>>> ', res);
-  ratesData.push(res.ValCurs.Valute)
-  console.log('ratesData>>>>>>>>>>>', ratesData[0]);
+    await axios.get("http://localhost:3003/yesterday").then((response) => {
+      const currencyData = response.data.ValCurs.Valute;
+      console.log("currencyData >>>>> ", currencyData);
+      ratesDataYesterday = currencyData;
+      console.log("ratesDataYesterday>>>>>>>>>>>", ratesDataYesterday);
+    });
 
+    const merge = [];
+    for (let i = 0; i < ratesDataToday.length; i++) {
+      merge.push({
+        currencyTicker: ratesDataToday[i].CharCode._text,
+        currencyName: ratesDataToday[i].Name._text,
+        currencyNominal: ratesDataToday[i].Nominal._text,
+        currencyPriceToday: ratesDataToday[i].Value._text,
+        currencyPriceYesterday: ratesDataYesterday[i].Value._text,
+      });
+    }
 
+    dispatch(setCurrencyList(merge));
 
-// axios.get('http://www.cbr.ru/scripts/XML_daily.asp', {mode: 'no-cors'})
-// .then((response) => {
-  
-//     response = response.data
-//     console.log('response >>>>> ', response);
-//     console.log(convert.xml2json(response, {compact: true, spaces: 4}));
-// })
-// .catch((error) => {
-//   console.log(`error >>>>` , error.response);
-// })
-dispatch(setCurrencyList(ratesData[0]))
+    // axios.get('http://www.cbr.ru/scripts/XML_daily.asp', {mode: 'no-cors'})
+    // .then((response) => {
 
+    //     response = response.data
+    //     console.log('response >>>>> ', response);
+    //     console.log(convert.xml2json(response, {compact: true, spaces: 4}));
+    // })
+    // .catch((error) => {
+    //   console.log(`error >>>>` , error.response);
+    // })
 
     // axios.get("https://www.cbr-xml-daily.ru/daily_json.js")
     // .then((response) => {
@@ -76,11 +89,12 @@ dispatch(setCurrencyList(ratesData[0]))
         {currencyItems.map((i) => (
           <div className="currency-item">
             <CurrencyItem
-           
               currencyTicker={i.currencyTicker}
               currencyName={i.currencyName}
-              currencyPrice={i.currencyPrice}
-              previous={i.previous}
+              currencyNominal={i.currencyNominal}
+              currencyPriceToday={i.currencyPriceToday}
+              currencyPriceYesterday={i.currencyPriceYesterday}
+              // previous={currencyYesterdayItems.previous}
             />
           </div>
         ))}

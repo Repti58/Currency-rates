@@ -36,7 +36,7 @@ p {
   font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
   font-size: smaller;
   width: 80px;
-  min-height: 40px;
+  min-height: 70px;
   font-weight: 600;
 
   color: rgb(41, 41, 41);
@@ -83,4 +83,26 @@ p {
   font-size: smaller;
   margin-top: 50px;
   text-align: center;
+}
+
+.loader {
+  border: 2px solid #f3f3f3; /* Light grey */
+  border-top: 2px solid #3498db; /* Blue */
+  border-radius: 50%;
+  width: 12px;
+  height: 12px;
+  animation: spin 2s linear infinite;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.hide-loader {
+  display: none;
 }
