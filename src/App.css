@@ -36,3 +36,22 @@
     transform: rotate(360deg);
   }
 }
+
+.wrapper {
+  width: 100%;
+  /* text-align: center; */
+  /* border: solid grey 5px; */
+}
+
+.currency-item-wrapper {
+  max-width: 1280px;
+  /* border: solid rgb(219, 21, 21) 1px; */
+  margin: auto;
+}
+
+.footer {
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+  font-size: smaller;
+  margin-top: 50px;
+  text-align: center;
+}
