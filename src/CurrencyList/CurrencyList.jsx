@@ -2,13 +2,8 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import CurrencyItem from "./CurrencyItem/CurrencyItem";
 import "./CurrencyList.css";
-// import xml2js from 'xml2js'
 import { setCurrencyList } from "../Redux/currencySlice";
-import getCurrencyName from "./getCurrencyName";
-// import { parseString } from 'xml2js';
-var convert = require("xml-js");
 const axios = require("axios").default;
-// const parseString = require('xml2js').parseString;
 
 const CurrencyList = () => {
   const dispatch = useDispatch();
@@ -16,37 +11,14 @@ const CurrencyList = () => {
   console.log("currencyItems >>>>> ", currencyItems);
 
   const getCurrencyList = async () => {
-    let ratesDataToday = [];
-    let ratesDataYesterday = [];
+    let ratesData = [];
 
-    await axios.get("http://localhost:3003/today").then((response) => {
-      const currencyData = response.data.ValCurs.Valute;
-      console.log("currencyData >>>>> ", currencyData);
-      ratesDataToday = currencyData;
-      console.log("ratesDataToday>>>>>>>>>>>", ratesDataToday);
+    await axios.get("http://localhost:3003/api").then((response) => {
+      ratesData = response.data;
+      console.log("ratesDataToday>>>>>>>>>>>", ratesData);
     });
 
-    await axios.get("http://localhost:3003/yesterday").then((response) => {
-      const currencyData = response.data.ValCurs.Valute;
-      console.log("currencyData >>>>> ", currencyData);
-      ratesDataYesterday = currencyData;
-      console.log("ratesDataYesterday>>>>>>>>>>>", ratesDataYesterday);
-    });
-
-    const merge = [];
-
-    for (let i = 0; i < ratesDataToday.length; i++) {
-      merge.push({
-        currencyTicker: ratesDataToday[i].CharCode._text,
-        currencyName: ratesDataToday[i].Name._text,
-        currencyNominal: ratesDataToday[i].Nominal._text,
-        currencyPriceToday: String(Number((ratesDataToday[i].Value._text).replace(',', '.')).toFixed(2)),
-        currencyPriceYesterday: String(Number((ratesDataYesterday[i].Value._text).replace(',', '.')).toFixed(2)),
-      });
-    }
-
-    dispatch(setCurrencyList(merge));
-    
+    dispatch(setCurrencyList(ratesData));
   };
 
   useEffect(() => {
@@ -57,7 +29,7 @@ const CurrencyList = () => {
   return (
     <div className="wrapper">
       <div className="currency-item-wrapper">
-        <p>Курсы иностранных валют к рублю (RUB) на {date}</p>
+        <p>Курсы иностранных валют к рублю по данным ЦБ РФ на {date}</p>
 
         {currencyItems.map((i) => (
           <div className="currency-item">
@@ -67,7 +39,6 @@ const CurrencyList = () => {
               currencyNominal={i.currencyNominal}
               currencyPriceToday={i.currencyPriceToday}
               currencyPriceYesterday={i.currencyPriceYesterday}
-              // previous={currencyYesterdayItems.previous}
             />
           </div>
         ))}

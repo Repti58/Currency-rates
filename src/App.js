@@ -1,10 +1,14 @@
 import './App.css';
 import CurrencyList from './CurrencyList/CurrencyList';
+import { Route, Routes } from 'react-router-dom';
 
 function App() {
   return (
     <div>
-      <CurrencyList />
+    <Routes>
+    <Route path='/currency_tablets' element={<CurrencyList />} />
+      
+    </Routes>
     </div>
   );
 }
