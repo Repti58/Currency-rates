@@ -1,34 +1,34 @@
 const CurrencyItem = (props) => {
   return (
-    <div>
-      {!props ? (
-        <div className="loader"></div>
-      ) : (
+    
+      
+        
         <div>
-          <div className="currency-item__currency-name">
-            {props.currencyName} <br />({props.currencyNominal} ед.)
-          </div>
-          <div className="currency-item__currency-ticker">
+          <td className="">
+            {props.currencyName} ({props.currencyNominal} ед.)
+          </td>
+          <td className="">
             {props.currencyTicker}
-          </div>
-          <div className="currency-item__currency-previous-price">
+          </td>
+          <td className="">
             {props.currencyPriceYesterday}
-          </div>
-          <div className="currency-item__currency-price">
+          </td>
+          <td className="">
             {props.currencyPriceToday}
-          </div>
-          <div className="currency-item__currency-move">
+          </td>
+          <td className="">
             {props.currencyPriceYesterday === props.currencyPriceToday ? (
               <></>
             ) : props.currencyPriceYesterday > props.currencyPriceToday ? (
-              <div className="currency-item__currency-move-down">▼</div>
+              <td className="">▼</td>
             ) : (
-              <div className="currency-item__currency-move-up">▲</div>
+              <td className="">▲</td>
             )}
+          </td>
           </div>
-        </div>
-      )}
-    </div>
+        
+     
+    
   );
 };
 
