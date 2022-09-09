@@ -21,7 +21,7 @@ p {
   padding: 5px;
   border: solid rgb(237, 237, 237) 1px;
   box-shadow: 0px 0px 6px #e9e8e8;
-  border-radius: 10px;
+  /* border-radius: 10px; */
 }
 
 .currency-item__currency-name {

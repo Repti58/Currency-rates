@@ -55,3 +55,32 @@
   margin-top: 50px;
   text-align: center;
 }
+
+/* .btn {
+  background-color: grey;
+} */
+
+.btn-primary {
+  color: rgb(122, 122, 122);
+  border: none;
+  /* background-color: grey; */
+  --bs-btn-bg: rgb(233, 233, 233);
+  --bs-btn-hover-bg: rgb(233, 233, 233);
+  --bs-btn-hover-color: rgb(167, 167, 167);
+  /* --bs-btn-hover-border-color: green;
+  --bs-btn-border-color: yellow; */
+  --bs-btn-active-bg: rgb(233, 233, 233);
+margin: 3px;
+}
+
+/* .btn-sm{
+  color: black;
+  background-color: grey;
+  margin: 2px;
+} */
+
+.view-buttons {
+  /* border: solid black; */
+  /* text-align: right; */
+  margin-bottom: 20px;
+}
