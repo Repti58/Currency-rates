@@ -3,15 +3,19 @@ import { createSlice } from "@reduxjs/toolkit";
 const currencySlice = createSlice({
   name: "currencyTodaySlice",
   initialState: {
-    currency: [],
+    currency: [{currencyPriceYesterday: ''}],
+    date: ''
   },
   reducers: {
     setCurrencyList(state, action) {
       state.currency = [];
       state.currency.push(...action.payload);
     },
+    setDate(state, action) {
+      state.date = action.payload
+    }
   },
 });
 
 export default currencySlice.reducer;
-export const { setCurrencyList } = currencySlice.actions;
+export const { setCurrencyList, setDate } = currencySlice.actions;
