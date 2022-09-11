@@ -8,10 +8,12 @@ import TabularView from "./CurrencyList/TabularView/TabularView";
 
 function App() {
   const axios = require("axios").default;
+  const date = new Date().toLocaleDateString();
 
   const dispatch = useDispatch();
-  const currencyItems = useSelector((state) => state.currencySlice.currency);
+  const currencyItems = useSelector((state) => state.currencySlice.currency[1]);
   const selectedDate = useSelector((state) => state.currencySlice.date);
+  const responseDate = useSelector((state) => state.currencySlice.currency[0].currencyDate);
   console.log("currencyItems >>>>> ", currencyItems);
 
   let ratesData = [];
@@ -24,9 +26,10 @@ function App() {
     dispatch(setCurrencyList(ratesData));
   };
 
-  const getCurrencyListForDate = async () => {    
+  const getCurrencyListForDate = async () => {   
+    const getModifyDate =  selectedDate.replaceAll('.', '/')
     await axios
-      .get(`http://localhost:3003/date_request?date=${selectedDate}`)
+      .get(`http://localhost:3003/date_request?date=${getModifyDate}`)
       .then((response) => {
         ratesData = response.data;
         console.log("getCurrencyListForDate>>>>>>>>>>>", response.data);
@@ -35,6 +38,9 @@ function App() {
   };
 
   const selectDate = (e) => {
+    if(e.target.value === date) {
+      getCurrencyList();
+    }
     dispatch(setDate(e.target.value));
   };
 
@@ -42,19 +48,18 @@ function App() {
     getCurrencyList();
   }, []);
 
-  const date = new Date().toLocaleDateString();
 
   return (
     <div className="wrapper">
       <div className="currency-item-wrapper">
-        <p>Официальные курсы валют к рублю по данным ЦБ РФ на {date}</p>
+        <p>Официальные курсы валют к рублю по данным ЦБ РФ на {selectedDate}</p>
         <div className="view-buttons">
           <input value={selectedDate} onChange={selectDate}></input>
           <button
             onClick={() => getCurrencyListForDate()}
             type="button"
             class="btn btn-primary btn-sm"
-          ></button>
+          >Ok</button>
           <Link to="/mosaic-view">
             <button
               onClick={() => getCurrencyList()}

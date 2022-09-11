@@ -3,7 +3,7 @@ import { createSlice } from "@reduxjs/toolkit";
 const currencySlice = createSlice({
   name: "currencyTodaySlice",
   initialState: {
-    currency: [{currencyPriceYesterday: ''}],
+    currency: [{}, [{currencyPriceYesterday: ''}]],
     date: ''
   },
   reducers: {

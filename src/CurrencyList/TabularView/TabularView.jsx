@@ -35,9 +35,9 @@ const TabularView = (props) => {
                 {i.currencyPriceYesterday === i.currencyPriceToday ? (
                   <>-</>
                 ) : i.currencyPriceYesterday > i.currencyPriceToday ? (
-                  <td className="currency-item__currency-move-down">▼</td>
+                  <div className="currency-item__currency-move-down">▼</div>
                 ) : (
-                  <td className="currency-item__currency-move-up">▲</td>
+                  <div className="currency-item__currency-move-up">▲</div>
                 )}
               </td>
             ) : (
