@@ -2,7 +2,7 @@ import React from "react";
 import CurrencyItem from "./CurrencyItem/CurrencyItem";
 import "./MosaicView.css";
 
-const CurrencyList = (props) => {
+const MosaicView = (props) => {
   return (
     <div>
       {props.currencyItems.map((i) => (
@@ -19,4 +19,4 @@ const CurrencyList = (props) => {
     </div>
   );
 };
-export default CurrencyList;
+export default MosaicView;

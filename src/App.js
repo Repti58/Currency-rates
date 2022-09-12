@@ -1,5 +1,4 @@
 import "./App.css";
-import CurrencyList from "./CurrencyList/MosaicView/MosaicView";
 import { Link, Route, Routes } from "react-router-dom";
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
@@ -7,6 +6,7 @@ import { setCurrencyList, setDate } from "./Redux/currencySlice";
 import TabularView from "./CurrencyList/TabularView/TabularView";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import MosaicView from "./CurrencyList/MosaicView/MosaicView";
 
 function App() {
   const axios = require("axios").default;
@@ -78,8 +78,12 @@ function App() {
 
         <Routes>
           <Route
+            path="/"
+            element={<TabularView currencyItems={currencyItems} />}
+          />
+          <Route
             path="/mosaic-view"
-            element={<CurrencyList currencyItems={currencyItems} />}
+            element={<MosaicView currencyItems={currencyItems} />}
           />
           <Route
             path="/tabular-view"
