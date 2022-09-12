@@ -5,31 +5,34 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setCurrencyList, setDate } from "./Redux/currencySlice";
 import TabularView from "./CurrencyList/TabularView/TabularView";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 
 function App() {
   const axios = require("axios").default;
-  const date = new Date().toLocaleDateString();
+  const nowDate = new Date().toLocaleDateString();
 
   const dispatch = useDispatch();
   const currencyItems = useSelector((state) => state.currencySlice.currency[1]);
   const selectedDate = useSelector((state) => state.currencySlice.date);
   const responseDate = useSelector((state) => state.currencySlice.currency[0].currencyDate);
+  const responsePrevDate = useSelector((state) => state.currencySlice.currency[0].prevCurrencyDate);
   console.log("currencyItems >>>>> ", currencyItems);
 
   let ratesData = [];
-  const getCurrencyList = async () => {
-    await axios.get("http://localhost:3003/api").then((response) => {
-      ratesData = response.data;
-      console.log("ratesDataToday>>>>>>>>>>>", ratesData);
-    });
+  // const getCurrencyList = async () => {
+  //   await axios.get("http://localhost:3003/api").then((response) => {
+  //     ratesData = response.data;
+  //     console.log("ratesDataToday>>>>>>>>>>>", ratesData);
+  //   });
 
-    dispatch(setCurrencyList(ratesData));
-  };
+  //   dispatch(setCurrencyList(ratesData));
+  // };
 
-  const getCurrencyListForDate = async () => {   
+  const getCurrencyList = async () => {   
     const getModifyDate =  selectedDate.replaceAll('.', '/')
     await axios
-      .get(`http://localhost:3003/date_request?date=${getModifyDate}`)
+      .get(`http://localhost:3003/api?date=${getModifyDate}`)
       .then((response) => {
         ratesData = response.data;
         console.log("getCurrencyListForDate>>>>>>>>>>>", response.data);
@@ -37,32 +40,37 @@ function App() {
     dispatch(setCurrencyList(ratesData));
   };
 
-  const selectDate = (e) => {
-    if(e.target.value === date) {
-      getCurrencyList();
-    }
-    dispatch(setDate(e.target.value));
+  const selectDate = (date) => {
+    
+    const modifyDate = new Date(date).toLocaleDateString()
+    // if(e.target.value === nowDate) {
+    //   getCurrencyList();
+    // }
+    dispatch(setDate(modifyDate));
   };
 
   useEffect(() => {
     getCurrencyList();
-  }, []);
+  }, [selectedDate]);
 
 
   return (
     <div className="wrapper">
       <div className="currency-item-wrapper">
-        <p>Официальные курсы валют к рублю по данным ЦБ РФ на {selectedDate}</p>
+        <p>Официальные курсы валют к рублю по данным ЦБ РФ на {responseDate}</p>
+        <DatePicker  value={selectedDate} onChange={(date) => selectDate(date)}/>
         <div className="view-buttons">
-          <input value={selectedDate} onChange={selectDate}></input>
+          {/* <input 
+          value={selectedDate}
+           onChange={selectDate}></input> */}
           <button
-            onClick={() => getCurrencyListForDate()}
+            onClick={() => getCurrencyList()}
             type="button"
             class="btn btn-primary btn-sm"
           >Ok</button>
           <Link to="/mosaic-view">
             <button
-              onClick={() => getCurrencyList()}
+              
               type="button"
               class="btn btn-primary btn-sm"
             >
@@ -71,7 +79,7 @@ function App() {
           </Link>
           <Link to="/tabular-view">
             <button
-              onClick={() => getCurrencyList()}
+              
               type="button"
               class="btn btn-primary btn-sm"
             >
@@ -87,7 +95,7 @@ function App() {
           />
           <Route
             path="/tabular-view"
-            element={<TabularView currencyItems={currencyItems} />}
+            element={<TabularView currencyItems={currencyItems} prevCurrencyDate={responsePrevDate} currencyDate={responseDate}/>}
           />
         </Routes>
         <div className="footer">Курсы ЦБ РФ в XML и JSON, API</div>
