@@ -85,3 +85,9 @@ margin: 3px;
   margin-bottom: 20px;
   display: inline-block;
 }
+
+.react-datepicker__input-container input {
+  border: solid grey 1px;
+  border-radius: 5px;
+}
+

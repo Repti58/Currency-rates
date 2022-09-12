@@ -51,11 +51,11 @@ function App() {
           {/* <input 
           value={selectedDate}
            onChange={selectDate}></input> */}
-          <button
+          {/* <button
             onClick={() => getCurrencyList()}
             type="button"
             class="btn btn-primary btn-sm"
-          >Ok</button>
+          >Ok</button> */}
           <Link to="/mosaic-view">
             <button
               
