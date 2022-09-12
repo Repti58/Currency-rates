@@ -20,15 +20,7 @@ function App() {
   console.log("currencyItems >>>>> ", currencyItems);
 
   let ratesData = [];
-  // const getCurrencyList = async () => {
-  //   await axios.get("http://localhost:3003/api").then((response) => {
-  //     ratesData = response.data;
-  //     console.log("ratesDataToday>>>>>>>>>>>", ratesData);
-  //   });
-
-  //   dispatch(setCurrencyList(ratesData));
-  // };
-
+ 
   const getCurrencyList = async () => {   
     const getModifyDate =  selectedDate.replaceAll('.', '/')
     await axios
@@ -40,12 +32,8 @@ function App() {
     dispatch(setCurrencyList(ratesData));
   };
 
-  const selectDate = (date) => {
-    
-    const modifyDate = new Date(date).toLocaleDateString()
-    // if(e.target.value === nowDate) {
-    //   getCurrencyList();
-    // }
+  const selectDate = (date) => {    
+    const modifyDate = new Date(date).toLocaleDateString()    
     dispatch(setDate(modifyDate));
   };
 
@@ -58,7 +46,7 @@ function App() {
     <div className="wrapper">
       <div className="currency-item-wrapper">
         <p>Официальные курсы валют к рублю по данным ЦБ РФ на {responseDate}</p>
-        <DatePicker  value={selectedDate} onChange={(date) => selectDate(date)}/>
+        <DatePicker closeOnScroll={true} value={selectedDate} onChange={(date) => selectDate(date)}/>
         <div className="view-buttons">
           {/* <input 
           value={selectedDate}
