@@ -10,7 +10,6 @@ import MosaicView from "./CurrencyList/MosaicView/MosaicView";
 
 function App() {
   const axios = require("axios").default;
-  const nowDate = new Date().toLocaleDateString();
 
   const dispatch = useDispatch();
   const currencyItems = useSelector((state) => state.currencySlice.currency[1]);
@@ -47,30 +46,22 @@ function App() {
 
   return (
     <div className="wrapper">
-      <header class='sticky-top'>
+      <header class="sticky-top">
         <div class="container container_top">
-          <p>
-            Официальные курсы валют к рублю по данным центробанка РФ
-          </p>
+          <p>Официальные курсы валют к рублю по данным центробанка РФ</p>
           <span className="date-picker">
             <DatePicker
-            // dateFormat="yyyy/MM/dd"
               closeOnScroll={true}
               value={selectedDate}
-              // selected={date}
               onChange={(date) => selectDate(date)}
+              peekNextMonth
+              showMonthDropdown
+              showYearDropdown
+              dropdownMode="select"
+              disabledKeyboardNavigation
             />
           </span>
           <span className="view-buttons">
-            {/* <input 
-          value={selectedDate}
-           onChange={selectDate}></input> */}
-            {/* <button
-            onClick={() => getCurrencyList()}
-            type="button"
-            class="btn btn-primary btn-sm"
-          >Ok</button> */}
-            
             <Link to="/tabular-view">
               <button type="button" class="btn btn-primary btn-sm">
                 <i class="bi bi-table"></i>
@@ -81,32 +72,46 @@ function App() {
                 <i class="bi bi-grid-fill"></i>
               </button>
             </Link>
-          </span>  
-      </div>
+          </span>
+        </div>
       </header>
-      <div class="container">
-        <Routes>
-          <Route
-            path="/"
-            element={<TabularView currencyItems={currencyItems} />}
-          />
-          <Route
-            path="/mosaic-view"
-            element={<MosaicView currencyItems={currencyItems} />}
-          />
-          <Route
-            path="/tabular-view"
-            element={
-              <TabularView
-                currencyItems={currencyItems}
-                prevCurrencyDate={responsePrevDate}
-                currencyDate={responseDate}
-              />
-            }
-          />
-        </Routes>
-        <footer>Курсы валют по даным центробанка РФ</footer>
+      <div class="container body">
+        {!currencyItems[0] ? (
+          <div className="no-data">За выбранный период данных не найдено</div>
+        ) : (
+          <Routes>
+            <Route
+              path="/"
+              element={<TabularView currencyItems={currencyItems} />}
+            />
+            <Route
+              path="/mosaic-view"
+              element={<MosaicView currencyItems={currencyItems} />}
+            />
+            <Route
+              path="/tabular-view"
+              element={
+                <TabularView
+                  currencyItems={currencyItems}
+                  prevCurrencyDate={responsePrevDate}
+                  currencyDate={responseDate}
+                />
+              }
+            />
+            <Route
+              path="/Currency-rates"
+              element={
+                <TabularView
+                  currencyItems={currencyItems}
+                  prevCurrencyDate={responsePrevDate}
+                  currencyDate={responseDate}
+                />
+              }
+            />
+          </Routes>
+        )}
       </div>
+      <footer>Курсы валют по даным центробанка РФ</footer>
     </div>
   );
 }

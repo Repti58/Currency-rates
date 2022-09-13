@@ -1,54 +1,10 @@
-.App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 5s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
 .wrapper {
   width: 100%;
- 
-  /* text-align: center; */
-  /* border: solid grey 5px; */
 }
 
 .currency-item-wrapper {
   max-width: 1280px;
-  /* border: solid rgb(219, 21, 21) 1px; */
   margin: auto;
-  
 }
 
 footer {
@@ -58,37 +14,21 @@ footer {
   text-align: center;
 }
 
-/* .btn {
-  background-color: grey;
-} */
-
 .btn-primary {
   color: rgb(122, 122, 122);
   border: none;
-  /* background-color: grey; */
   --bs-btn-bg: rgb(233, 233, 233);
   --bs-btn-hover-bg: rgb(233, 233, 233);
   --bs-btn-hover-color: rgb(167, 167, 167);
-  /* --bs-btn-hover-border-color: green;
-  --bs-btn-border-color: yellow; */
   --bs-btn-active-bg: rgb(233, 233, 233);
-margin: 2px;
+  margin: 2px;
 }
 
-/* .btn-sm{
-  color: black;
-  background-color: grey;
-  margin: 2px;
-} */
-
 .view-buttons {
-  /* border: solid black; */
   float: right;
   text-align: right;
   margin-top: 50px;
   margin-bottom: 20px;
-
-  /* display: inline-block; */
 }
 
 .react-datepicker__input-container input {
@@ -98,36 +38,37 @@ margin: 2px;
 
 p {
   text-align: center;
-  font-family: 'Montserrat', sans-serif;
+  font-family: "Montserrat", sans-serif;
   font-size: 20pt;
   font-weight: 400;
   color: #dfdfdf;
   padding-top: 20px;
-  /* border: solid grey 1px; */
 }
 
 .date-picker {
   display: inline-block;
-  /* border: solid black; */
   margin-top: 50px;
   margin-bottom: 20px;
 }
 
-.container {
-  /* background-color: #f5f5f5; */
+.body {
+  min-height: 700px;
 }
 
 .container_top {
   background-color: transparent;
   border-bottom: 5px rgb(235, 15, 15);
-  
-  /* height: 150px; */
-  
 }
 
 header {
   background-color: #00284e;
-  /* height: 150px; */
-  /* border-bottom: 5px black; */
+
   box-shadow: 0px 0px 6px #0f0f0f;
+}
+
+.no-data {
+  margin-top: 20px;
+  color: red;
+  font-size: larger;
+  
 }

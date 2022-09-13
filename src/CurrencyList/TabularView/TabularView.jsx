@@ -10,13 +10,14 @@ const TabularView = (props) => {
           <th>Букв код</th>
           <th>Единиц</th>
           <th>Валюта</th>
-          <th className="currency-hcell">Курс<br></br>
-          {props.currencyDate}</th>
-          {!props.currencyItems[0].currencyPriceYesterday ? (<></>) : (
-            <th className="differense-head-cell" colSpan={2}>
-              Изменение от <br></br> {props.prevCurrencyDate}
-            </th>
-          )}
+          <th className="currency-hcell">
+            Курс<br></br>
+            {props.currencyDate}
+          </th>
+
+          <th className="differense-head-cell" colSpan={2}>
+            Изменение от <br></br> {props.prevCurrencyDate}
+          </th>
         </tr>
       </thead>
       <tbody class="table-group-divider">
