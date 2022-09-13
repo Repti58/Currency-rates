@@ -1,6 +1,6 @@
 const CurrencyItem = (props) => {
   return (
-    <div>
+    <div >
       {!props ? (
         <div className="loader"></div>
       ) : (

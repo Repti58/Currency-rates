@@ -4,7 +4,7 @@ import "./TabularView.css";
 const TabularView = (props) => {
   return (
     // <div class="container">
-    <table class="table table-striped">
+    <table class="table table table-striped table-hover">
       <thead>
         <tr>
           <th>Букв код</th>
@@ -19,7 +19,7 @@ const TabularView = (props) => {
           )}
         </tr>
       </thead>
-      <tbody>
+      <tbody class="table-group-divider">
         {props.currencyItems.map((i) => (
           <tr>
             <td className="">{i.currencyTicker}</td>

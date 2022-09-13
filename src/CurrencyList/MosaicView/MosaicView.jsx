@@ -4,7 +4,7 @@ import "./MosaicView.css";
 
 const MosaicView = (props) => {
   return (
-    <div>
+    <div className="mosaic-view">
       {props.currencyItems.map((i) => (
         <div className="currency-item">
           <CurrencyItem

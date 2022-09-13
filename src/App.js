@@ -15,14 +15,18 @@ function App() {
   const dispatch = useDispatch();
   const currencyItems = useSelector((state) => state.currencySlice.currency[1]);
   const selectedDate = useSelector((state) => state.currencySlice.date);
-  const responseDate = useSelector((state) => state.currencySlice.currency[0].currencyDate);
-  const responsePrevDate = useSelector((state) => state.currencySlice.currency[0].prevCurrencyDate);
+  const responseDate = useSelector(
+    (state) => state.currencySlice.currency[0].currencyDate
+  );
+  const responsePrevDate = useSelector(
+    (state) => state.currencySlice.currency[0].prevCurrencyDate
+  );
   console.log("currencyItems >>>>> ", currencyItems);
 
   let ratesData = [];
- 
-  const getCurrencyList = async () => {   
-    const getModifyDate =  selectedDate.replaceAll('.', '/')
+
+  const getCurrencyList = async () => {
+    const getModifyDate = selectedDate.replaceAll(".", "/");
     await axios
       .get(`http://localhost:3003/api?date=${getModifyDate}`)
       .then((response) => {
@@ -32,8 +36,8 @@ function App() {
     dispatch(setCurrencyList(ratesData));
   };
 
-  const selectDate = (date) => {    
-    const modifyDate = new Date(date).toLocaleDateString()    
+  const selectDate = (date) => {
+    const modifyDate = new Date(date).toLocaleDateString();
     dispatch(setDate(modifyDate));
   };
 
@@ -41,41 +45,46 @@ function App() {
     getCurrencyList();
   }, [selectedDate]);
 
-
   return (
     <div className="wrapper">
-      <div className="currency-item-wrapper">
-        <p>Официальные курсы валют к рублю по данным ЦБ РФ на {responseDate}</p>
-        <DatePicker closeOnScroll={true} value={selectedDate} onChange={(date) => selectDate(date)}/>
-        <div className="view-buttons">
-          {/* <input 
+      <header class='sticky-top'>
+        <div class="container container_top">
+          <p>
+            Официальные курсы валют к рублю по данным центробанка РФ
+          </p>
+          <span className="date-picker">
+            <DatePicker
+            // dateFormat="yyyy/MM/dd"
+              closeOnScroll={true}
+              value={selectedDate}
+              // selected={date}
+              onChange={(date) => selectDate(date)}
+            />
+          </span>
+          <span className="view-buttons">
+            {/* <input 
           value={selectedDate}
            onChange={selectDate}></input> */}
-          {/* <button
+            {/* <button
             onClick={() => getCurrencyList()}
             type="button"
             class="btn btn-primary btn-sm"
           >Ok</button> */}
-          <Link to="/mosaic-view">
-            <button
-              
-              type="button"
-              class="btn btn-primary btn-sm"
-            >
-              <i class="bi bi-grid-fill"></i>
-            </button>
-          </Link>
-          <Link to="/tabular-view">
-            <button
-              
-              type="button"
-              class="btn btn-primary btn-sm"
-            >
-              <i class="bi bi-list"></i>
-            </button>
-          </Link>
-        </div>
-
+            
+            <Link to="/tabular-view">
+              <button type="button" class="btn btn-primary btn-sm">
+                <i class="bi bi-table"></i>
+              </button>
+            </Link>
+            <Link to="/mosaic-view">
+              <button type="button" class="btn btn-primary btn-sm">
+                <i class="bi bi-grid-fill"></i>
+              </button>
+            </Link>
+          </span>  
+      </div>
+      </header>
+      <div class="container">
         <Routes>
           <Route
             path="/"
@@ -87,10 +96,16 @@ function App() {
           />
           <Route
             path="/tabular-view"
-            element={<TabularView currencyItems={currencyItems} prevCurrencyDate={responsePrevDate} currencyDate={responseDate}/>}
+            element={
+              <TabularView
+                currencyItems={currencyItems}
+                prevCurrencyDate={responsePrevDate}
+                currencyDate={responseDate}
+              />
+            }
           />
         </Routes>
-        <div className="footer">Курсы ЦБ РФ в XML и JSON, API</div>
+        <footer>Курсы валют по даным центробанка РФ</footer>
       </div>
     </div>
   );
