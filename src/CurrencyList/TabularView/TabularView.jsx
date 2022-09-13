@@ -3,9 +3,8 @@ import "./TabularView.css";
 
 const TabularView = (props) => {
   return (
-    // <div class="container">
-    <table class="table table table-striped table-hover">
-      <thead>
+    <table className="table table table-striped table-hover">          
+      <thead >
         <tr>
           <th>Букв код</th>
           <th>Единиц</th>
@@ -14,15 +13,14 @@ const TabularView = (props) => {
             Курс<br></br>
             {props.currencyDate}
           </th>
-
           <th className="differense-head-cell" colSpan={2}>
             Изменение от <br></br> {props.prevCurrencyDate}
           </th>
         </tr>
       </thead>
-      <tbody class="table-group-divider">
+      <tbody className="table-group-divider">
         {props.currencyItems.map((i) => (
-          <tr>
+          <tr key={i.id}>
             <td className="">{i.currencyTicker}</td>
             <td className="">{i.currencyNominal}</td>
             <td className="">{i.currencyName}</td>
@@ -49,7 +47,6 @@ const TabularView = (props) => {
         ))}
       </tbody>
     </table>
-    // </div>
   );
 };
 export default TabularView;

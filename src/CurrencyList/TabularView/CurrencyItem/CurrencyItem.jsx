@@ -1,21 +1,29 @@
 const CurrencyItem = (props) => {
   return (
-    <div>
-      <td className="">{props.currencyName}</td>
-      <td className="">{props.currencyNominal}</td>
-      <td className="">{props.currencyTicker}</td>
-      <td className="">{props.currencyPriceYesterday}</td>
-      <td className="">{props.currencyPriceToday}</td>
-      <td className="">
-        {props.currencyPriceYesterday === props.currencyPriceToday ? (
-          <></>
-        ) : props.currencyPriceYesterday > props.currencyPriceToday ? (
-          <td className="">▼</td>
-        ) : (
-          <td className="currency-item__currency-move-up">▲</td>
-        )}
-      </td>
-    </div>
+    <tr>
+      <td>{props.currencyTicker}</td>
+      <td>{props.currencyNominal}</td>
+      <td>{props.currencyName}</td>
+      <td className="currency-cell">{props.currencyPriceToday}</td>
+      {props.currencyPriceYesterday ? (
+        <td className="difference">{props.difference}</td>
+      ) : (
+        <></>
+      )}
+      {props.currencyPriceYesterday ? (
+        <td className="">
+          {props.currencyPriceYesterday === props.currencyPriceToday ? (
+            <>-</>
+          ) : props.currencyPriceYesterday > props.currencyPriceToday ? (
+            <div className="currency-item__currency-move-down">▼</div>
+          ) : (
+            <div className="currency-item__currency-move-up">▲</div>
+          )}
+        </td>
+      ) : (
+        <></>
+      )}
+    </tr>
   );
 };
 

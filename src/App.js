@@ -12,6 +12,7 @@ function App() {
   const axios = require("axios").default;
 
   const dispatch = useDispatch();
+  const currencySliceData = useSelector((state) => state.currencySlice);
   const currencyItems = useSelector((state) => state.currencySlice.currency[1]);
   const selectedDate = useSelector((state) => state.currencySlice.date);
   const responseDate = useSelector(
@@ -21,17 +22,23 @@ function App() {
     (state) => state.currencySlice.currency[0].prevCurrencyDate
   );
   console.log("currencyItems >>>>> ", currencyItems);
+  console.log("currencySliceData >>>>> ", currencySliceData);
 
   let ratesData = [];
 
   const getCurrencyList = async () => {
     const getModifyDate = selectedDate.replaceAll(".", "/");
-    await axios
-      .get(`http://localhost:3003/api?date=${getModifyDate}`)
-      .then((response) => {
-        ratesData = response.data;
-        console.log("getCurrencyListForDate>>>>>>>>>>>", response.data);
-      });
+    try {
+      await axios
+        .get(`http://localhost:3003/api?date=${getModifyDate}`)
+        .then((response) => {
+          ratesData = response.data;
+          console.log("getCurrencyListForDate>>>>>>>>>>>", response.data);
+        });
+    } catch {
+      console.log("no axios data");
+      
+    }
     dispatch(setCurrencyList(ratesData));
   };
 
@@ -46,8 +53,8 @@ function App() {
 
   return (
     <div className="wrapper">
-      <header class="sticky-top">
-        <div class="container container_top">
+      <header className="sticky-top">
+        <div className="container container_top">
           <p>Официальные курсы валют к рублю по данным центробанка РФ</p>
           <span className="date-picker">
             <DatePicker
@@ -63,19 +70,19 @@ function App() {
           </span>
           <span className="view-buttons">
             <Link to="/tabular-view">
-              <button type="button" class="btn btn-primary btn-sm">
-                <i class="bi bi-table"></i>
+              <button type="button" className="btn btn-primary btn-sm">
+                <i className="bi bi-table"></i>
               </button>
             </Link>
             <Link to="/mosaic-view">
-              <button type="button" class="btn btn-primary btn-sm">
-                <i class="bi bi-grid-fill"></i>
+              <button type="button" className="btn btn-primary btn-sm">
+                <i className="bi bi-grid-fill"></i>
               </button>
             </Link>
           </span>
         </div>
       </header>
-      <div class="container body">
+      <div className="container body">
         {!currencyItems[0] ? (
           <div className="no-data">За выбранный период данных не найдено</div>
         ) : (
