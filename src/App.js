@@ -21,8 +21,6 @@ function App() {
   const responsePrevDate = useSelector(
     (state) => state.currencySlice.currency[0].prevCurrencyDate
   );
-  console.log("currencyItems >>>>> ", currencyItems);
-  console.log("currencySliceData >>>>> ", currencySliceData);
 
   let ratesData = [];
 
@@ -30,15 +28,13 @@ function App() {
     const getModifyDate = selectedDate.replaceAll(".", "/");
     try {
       await axios
-        .get(`http://localhost:3003/api?date=${getModifyDate}`)
+        .get(
+          `https://currency-rates-backend.vercel.app/api?date=${getModifyDate}`
+        )
         .then((response) => {
           ratesData = response.data;
-          console.log("getCurrencyListForDate>>>>>>>>>>>", response.data);
         });
-    } catch {
-      console.log("no axios data");
-      
-    }
+    } catch {}
     dispatch(setCurrencyList(ratesData));
   };
 

@@ -7,7 +7,8 @@ const MosaicView = (props) => {
     <div className="mosaic-view">
       {props.currencyItems.map((i) => (
         <div className="currency-item">
-          <CurrencyItem key={i.id}
+          <CurrencyItem
+            key={i.id}
             currencyTicker={i.currencyTicker}
             currencyName={i.currencyName}
             currencyNominal={i.currencyNominal}

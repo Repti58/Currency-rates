@@ -2,10 +2,9 @@ import React from "react";
 import "./TabularView.css";
 
 const TabularView = (props) => {
-  debugger
   return (
-    <table className="table table table-striped table-hover">          
-      <thead >
+    <table className="table table table-striped table-hover">
+      <thead>
         <tr>
           <th>Букв код</th>
           <th>Единиц</th>
