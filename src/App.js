@@ -82,17 +82,13 @@ function App() {
         {!currencyItems[0] ? (
           <div className="no-data">За выбранный период данных не найдено</div>
         ) : (
-          <Routes>
-            <Route
-              path="/"
-              element={<TabularView currencyItems={currencyItems} />}
-            />
+          <Routes>          
             <Route
               path="/mosaic-view"
               element={<MosaicView currencyItems={currencyItems} />}
             />
             <Route
-              path="/tabular-view"
+              path={"/tabular-view" && "/*"}
               element={
                 <TabularView
                   currencyItems={currencyItems}
