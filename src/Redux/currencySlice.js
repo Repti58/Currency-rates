@@ -5,7 +5,7 @@ const currencySlice = createSlice({
   initialState: {
     currency: [
       { currencyDate: "", prevCurrencyDate: "" },
-      [{ currencyPriceYesterday: "" }],
+      [{id: "0", currencyPriceYesterday: "" }],
     ],
     date: new Date().toLocaleDateString(),
   },
