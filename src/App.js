@@ -67,7 +67,6 @@ function App() {
           <span className="view-buttons">
             <Link to="/tabular-view">
               <button type="button" className="btn btn-primary btn-sm">
-                {/* < className="bi bi-list-ul"></> */}
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="16"
@@ -85,7 +84,6 @@ function App() {
             </Link>
             <Link to="/mosaic-view">
               <button type="button" className="btn btn-primary btn-sm">
-                {/* <i className="bi bi-grid-fill"></i> */}
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="16"
