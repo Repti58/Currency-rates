@@ -7,7 +7,7 @@ const currencySlice = createSlice({
       { currencyDate: "", prevCurrencyDate: "" },
       [{ id: "0", currencyPriceYesterday: "" }],
     ],
-    date: new Date().toLocaleDateString(),
+    date: new Date().toLocaleDateString('en-GB'),
   },
   reducers: {
     setCurrencyList(state, action) {
