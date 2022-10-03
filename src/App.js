@@ -133,7 +133,7 @@ function App() {
           </Routes>
         )}
       </div>
-      <footer>Курсы валют по даным центробанка РФ</footer>
+      <footer className="footer">Курсы валют по даным центробанка РФ</footer>
     </div>
   );
 }

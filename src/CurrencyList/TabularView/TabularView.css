@@ -24,3 +24,14 @@
 .currency-hcell {
   text-align: center;
 }
+
+@media screen and (max-width: 510px){
+  .table {
+    font-size: 12px;
+  }
+}
+@media screen and (max-width: 405px){
+  .table {
+    font-size: 10px;
+  }
+}

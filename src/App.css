@@ -2,14 +2,7 @@
   width: 100%;
 }
 
-.currency-item-wrapper {
-  max-width: 1280px;
-  margin: auto;
-}
-
-footer {
-  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
-  font-size: smaller;
+.footer { 
   margin-top: 50px;
   text-align: center;
 }
@@ -27,7 +20,6 @@ footer {
 .view-buttons {
   float: right;
   text-align: right;
-  /* margin-top: 50px; */
   margin-bottom: 20px;
 }
 
@@ -37,9 +29,8 @@ footer {
 }
 
 .title {
-  /* max-width: 550px; */
-  text-align: center;
-  font-family: "Montserrat", sans-serif;
+  /* max-width: 700px; */
+  text-align: center;  
   font-size: 20pt;
   font-weight: 400;
   color: #dfdfdf;
@@ -50,19 +41,11 @@ footer {
 
 .date-picker {
   display: inline-block;
-  /* margin-top: 50px; */
   margin-bottom: 20px;
 }
 
-.body {
-  min-height: 700px;
-}
-
-
-
 header {
   background-color: #00284e;
-
   box-shadow: 0px 0px 6px #0f0f0f;
 }
 
@@ -76,4 +59,43 @@ header {
   position: sticky;
   top: -80px;
 }
+
+input {
+  height: 30px;
+}
+
+@media screen and (max-width: 405px) {
+  .container {
+    padding-left: 5px;
+    padding-right: 5px;
+  }
+  .table>:not(caption)>*>* {
+    padding: 3px;
+  }
+  .footer {
+    font-size: 10px;
+  }
+}
+@media screen and (max-width: 510px) {
+  .title {
+  font-size: 16px;
+  }
+  input {
+    font-size: 12px;
+  }
+}
+
+
+/* @media screen and (max-width: 993px) {
+  .sticky {    
+    top: -80px;
+  }
+} */
+
+/* @media screen and (max-width: 991px) {
+  .sticky {    
+    top: -110px;
+  }
+} */
+
 
