@@ -49,9 +49,11 @@ function App() {
 
   return (
     <div className="wrapper">
-      <header className="sticky-top">
-        <div className="container container_top">
+      <header className="sticky">
+        <div className="container">
+          <div className="title">
           <p>Официальные курсы валют к рублю по данным центробанка РФ</p>
+          </div>
           <span className="date-picker">
             <DatePicker
               closeOnScroll={true}

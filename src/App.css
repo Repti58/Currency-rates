@@ -27,7 +27,7 @@ footer {
 .view-buttons {
   float: right;
   text-align: right;
-  margin-top: 50px;
+  /* margin-top: 50px; */
   margin-bottom: 20px;
 }
 
@@ -36,18 +36,21 @@ footer {
   border-radius: 5px;
 }
 
-p {
+.title {
+  /* max-width: 550px; */
   text-align: center;
   font-family: "Montserrat", sans-serif;
   font-size: 20pt;
   font-weight: 400;
   color: #dfdfdf;
   padding-top: 20px;
+  margin: 0 auto 20px auto;
+  border-bottom: solid #ffffff 1px;
 }
 
 .date-picker {
   display: inline-block;
-  margin-top: 50px;
+  /* margin-top: 50px; */
   margin-bottom: 20px;
 }
 
@@ -55,10 +58,7 @@ p {
   min-height: 700px;
 }
 
-.container_top {
-  background-color: transparent;
-  border-bottom: 5px rgb(235, 15, 15);
-}
+
 
 header {
   background-color: #00284e;
@@ -71,3 +71,9 @@ header {
   color: red;
   font-size: larger;
 }
+
+.sticky {
+  position: sticky;
+  top: -80px;
+}
+
