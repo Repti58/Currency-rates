@@ -85,17 +85,27 @@ input {
   }
 }
 
-
-/* @media screen and (max-width: 993px) {
+@media screen and (max-width: 509px) {
+  .sticky {    
+    top: -87px;
+  }
+}
+@media screen and (min-width: 510px) {
+  .sticky {    
+    top: -120px;
+  }
+}
+@media screen and (min-width: 768px) {
+  .sticky {    
+    top: -117px;
+  }
+}
+@media screen and (min-width: 992px) {
   .sticky {    
     top: -80px;
   }
-} */
+}
 
-/* @media screen and (max-width: 991px) {
-  .sticky {    
-    top: -110px;
-  }
-} */
+
 
 
