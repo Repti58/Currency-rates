@@ -28,7 +28,8 @@ const TabularView = (props) => {
             <td className="">{i.currencyTicker}</td>
             <td className="">{i.currencyNominal}</td>
             <td className="">{i.currencyName}</td>
-            <td className="currency-cell">{i.currencyPriceToday}</td>
+            {i.currencyTicker === 'USD'|| i.currencyTicker === 'EUR' || i.currencyTicker === 'GBP' || i.currencyTicker === 'JPY' ? <td  className="currency-cell accent">{i.currencyPriceToday}</td> :
+            <td  className="currency-cell">{i.currencyPriceToday}</td>}
             {i.currencyPriceYesterday ? (
               <td className="difference">{i.difference}</td>
             ) : (
