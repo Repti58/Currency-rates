@@ -3,7 +3,10 @@ import "./TabularView.css";
 
 const TabularView = (props) => {
   return (
-    <table className="table table table-striped table-hover">
+    
+    <div>
+      {!props.currencyItems[2] ? <div className="loader"></div> : 
+      <table className="table table table-striped table-hover">
       <thead>
         <tr>
           <th>Букв код</th>
@@ -19,6 +22,7 @@ const TabularView = (props) => {
         </tr>
       </thead>
       <tbody className="table-group-divider">
+        
         {props.currencyItems.map((i) => (
           <tr key={i.id}>
             <td className="">{i.currencyTicker}</td>
@@ -42,11 +46,15 @@ const TabularView = (props) => {
               </td>
             ) : (
               <></>
-            )}
+            )}            
           </tr>
         ))}
+        
       </tbody>
-    </table>
+      
+      </table>
+    }
+    </div>
   );
 };
 export default TabularView;
