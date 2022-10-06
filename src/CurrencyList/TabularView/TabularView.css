@@ -38,6 +38,7 @@ position: relative;
   height: 100%;
   background-color: rgb(210, 237, 255);
   z-index: -1;
+  border-radius: 5px;
 }
 
 @media screen and (max-width: 510px){
