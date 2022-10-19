@@ -18,5 +18,5 @@ https://github.com/repti85/Currency-rates-backend.git
 
 ## Appearance:
 <a href="https://repti85.github.io/Currency-rates/">
-  <img src="img/screenshot.png"> 
+  <img src="img/screenshot_cut.png"> 
 </a>
