@@ -5,7 +5,8 @@ Currency rates
 </h1>
 <p align="center">https://repti85.github.io/Currency-rates</p>
 <h3>This web app using backend deployed on Vercell.com</h3>
-https://github.com/repti85/Currency-rates-backend.git
+
+**Github (frontend):**  https://github.com/repti85/Currency-rates-backend.git
 
 ## Contain:
 - **Data on exchange rates for any date**
