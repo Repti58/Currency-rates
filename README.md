@@ -9,7 +9,7 @@ https://github.com/repti85/Currency-rates-backend.git
 
 ## Contain:
 - **Data on exchange rates for any date**
-- **Rates change display**
+- **Rates change display (amount and pointer indicator)**
 - **Switcher tabular view/mosaic view**
 
 ## Features:
