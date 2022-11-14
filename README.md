@@ -1,12 +1,12 @@
 <h1 align="center">
-<a href="https://repti85.github.io/Currency-rates">
+<a href="https://repti58.github.io/Currency-rates">
 Currency rates
 </a>
 </h1>
-<p align="center">https://repti85.github.io/Currency-rates</p>
+<p align="center">https://repti58.github.io/Currency-rates</p>
 <h3>This web app using backend deployed on Vercell.com</h3>
 
-**Github (frontend):**  https://github.com/repti85/Currency-rates-backend.git
+**Github (frontend):**  https://github.com/repti58/Currency-rates-backend.git
 
 ## Contains:
 - **Data on exchange rates for any date**
@@ -18,6 +18,6 @@ Currency rates
 - **Technologies used: HTML, CSS, Bootstrap, JavaScript, React, Redux/Redux-toolkit, Axios**
 
 ## Appearance:
-<a href="https://repti85.github.io/Currency-rates/">
+<a href="https://repti58.github.io/Currency-rates/">
   <img src="img/screenshot_cut.png"> 
 </a>
