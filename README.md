@@ -15,7 +15,7 @@ Currency rates
 
 ## Features:
 - **Adaptive layout**
-- **Technologies used: HTML, CSS, Bootstrap, JavaScript, React, Redux/Redux-toolkit**
+- **Technologies used: HTML, CSS, Bootstrap, JavaScript, React, Redux/Redux-toolkit, Axios**
 
 ## Appearance:
 <a href="https://repti85.github.io/Currency-rates/">
