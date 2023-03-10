@@ -5,6 +5,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { setCurrencyList, setDate } from "./Redux/currencySlice";
 import TabularView from "./CurrencyList/TabularView/TabularView";
 import DatePicker from "react-datepicker";
+import Diagram from "./CurrencyList/TabularView/Diagram/Diagram";
 import "react-datepicker/dist/react-datepicker.css";
 import MosaicView from "./CurrencyList/MosaicView/MosaicView";
 
@@ -21,6 +22,7 @@ function App() {
   const responsePrevDate = useSelector(
     (state) => state.currencySlice.currency[0].prevCurrencyDate
   );
+  const diagramData = useSelector((state) => state.currencySlice.diagramData)
 
   let ratesData = [];
 
@@ -129,6 +131,14 @@ function App() {
                   currencyDate={responseDate}
                 />
               }
+            />
+            <Route
+            path="/diagram"
+            element={
+              <Diagram
+              diagramData={diagramData}
+              />
+            }
             />
           </Routes>
         )}

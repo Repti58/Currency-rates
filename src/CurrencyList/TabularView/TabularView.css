@@ -41,6 +41,11 @@ position: relative;
   border-radius: 5px;
 }
 
+.link {
+  text-decoration: none;
+  color: var(--bs-table-striped-color);
+}
+
 @media screen and (max-width: 510px){
   .table {
     font-size: 12px;

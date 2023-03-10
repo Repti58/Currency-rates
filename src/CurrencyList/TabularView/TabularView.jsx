@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import "./TabularView.css";
 
 const TabularView = (props) => {
@@ -27,7 +28,11 @@ const TabularView = (props) => {
           <tr key={i.id}>
             <td className="">{i.currencyTicker}</td>
             <td className="">{i.currencyNominal}</td>
-            <td className="">{i.currencyName}</td>
+            <td className="">
+            <Link to="/diagram" className="link">
+              {i.currencyName}
+            </Link>
+              </td>
             {i.currencyTicker === 'USD'|| i.currencyTicker === 'EUR' || i.currencyTicker === 'GBP' || i.currencyTicker === 'JPY' ? <td  className="currency-cell accent">{i.currencyPriceToday}</td> :
             <td  className="currency-cell">{i.currencyPriceToday}</td>}
             {i.currencyPriceYesterday ? (
@@ -49,6 +54,7 @@ const TabularView = (props) => {
               <></>
             )}            
           </tr>
+          
         ))}
         
       </tbody>

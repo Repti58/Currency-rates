@@ -8,6 +8,18 @@ const currencySlice = createSlice({
       [{ id: "0", currencyPriceYesterday: "" }],
     ],
     date: new Date().toLocaleDateString('en-GB'),
+    diagramData: [
+   
+    ["date", "EUR"],
+    ["01.01", 79],
+    ["02.01", 75],
+    ["03.01", 74],
+    ["04.01", 73],
+    ["05.01", 76],
+    ["06.01", 73],
+    ["07.01", 74],
+    ["08.01", 75]
+  ]
   },
   reducers: {
     setCurrencyList(state, action) {
