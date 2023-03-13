@@ -22,7 +22,7 @@ function App() {
   const responsePrevDate = useSelector(
     (state) => state.currencySlice.currency[0].prevCurrencyDate
   );
-  const diagramData = useSelector((state) => state.currencySlice.diagramData)
+  const diagramData = useSelector((state) => state.currencySlice.diagramData);
 
   let ratesData = [];
 
@@ -55,7 +55,7 @@ function App() {
       <header className="sticky">
         <div className="container">
           <div className="title">
-          <p>Официальные курсы валют к рублю по данным центробанка РФ</p>
+            <p>Официальные курсы валют к рублю по данным центробанка РФ</p>
           </div>
           <span className="date-picker">
             <DatePicker
@@ -120,6 +120,7 @@ function App() {
                   currencyItems={currencyItems}
                   prevCurrencyDate={responsePrevDate}
                   currencyDate={responseDate}
+                  diagramData={diagramData}
                 />
               }
             />
@@ -130,16 +131,49 @@ function App() {
                   currencyItems={currencyItems}
                   prevCurrencyDate={responsePrevDate}
                   currencyDate={responseDate}
+                  diagramData={diagramData}
                 />
               }
             />
             <Route
-            path="/diagram"
-            element={
-              <Diagram
-              diagramData={diagramData}
-              />
-            }
+              path="/AUD"
+              element={
+                <Diagram 
+                  diagramData={diagramData} 
+                  currencyDate={responseDate}
+                  ticker="AUD"
+                />
+              }
+            />
+            <Route
+              path="/AZN"
+              element={
+                <Diagram 
+                  diagramData={diagramData} 
+                  currencyDate={responseDate}
+                  ticker="AZN"
+                />
+              }
+            />
+            <Route
+              path="/GBP"
+              element={
+                <Diagram 
+                  diagramData={diagramData}
+                  currencyDate={responseDate} 
+                  ticker="GBP"
+                />
+              }
+            />
+            <Route
+              path="/AMD"
+              element={
+                <Diagram 
+                  diagramData={diagramData}
+                  currencyDate={responseDate} 
+                  ticker="AMD"
+                />
+              }
             />
           </Routes>
         )}

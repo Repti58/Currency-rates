@@ -10,7 +10,7 @@ const currencySlice = createSlice({
     date: new Date().toLocaleDateString('en-GB'),
     diagramData: [
    
-    ["date", "EUR"],
+    ["date", "XXX"],
     // ["01.01", 79],
     // ["02.01", 75],
     // ["03.01", 74],
@@ -38,8 +38,10 @@ const currencySlice = createSlice({
 
     setDiagramData(state, action) {
       debugger
-      state.diagramData = [["date", "TRY"], ...action.payload];
-    }
+      state.diagramData = [state.diagramData[0]]
+      state.diagramData = action.payload;
+    },
+    
   },
 });
 
