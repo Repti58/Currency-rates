@@ -7,10 +7,10 @@ const currencySlice = createSlice({
       { currencyDate: "", prevCurrencyDate: "" },
       [{ id: "0", currencyPriceYesterday: "" }],
     ],
-    date: new Date().toLocaleDateString('en-GB'),
-    diagramData: [
+    date: new Date().toLocaleDateString('en-GB').replaceAll("/", "."),
+    diagramData: undefined
    
-    ["date", "XXX"],
+    // ["date", "XXX"],
     // ["01.01", 79],
     // ["02.01", 75],
     // ["03.01", 74],
@@ -19,7 +19,7 @@ const currencySlice = createSlice({
     // ["06.01", 73],
     // ["07.01", 74],
     // ["08.01", 75]
-  ]
+  
   },
   reducers: {
     setCurrencyList(state, action) {
@@ -38,7 +38,7 @@ const currencySlice = createSlice({
 
     setDiagramData(state, action) {
       debugger
-      state.diagramData = [state.diagramData[0]]
+      state.diagramData = []
       state.diagramData = action.payload;
     },
     

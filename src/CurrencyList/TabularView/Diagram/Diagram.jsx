@@ -36,7 +36,7 @@ const Diagram = (props) => {
       try {
         await axios     
           .get(
-            `http://localhost:3003/ratesDynamic?dateStart=12/02/2023&dateEnd=12/03/2023&currencyName=${ticker}`          
+            `http://localhost:3003/ratesDynamic?dateStart=12/02/2023&dateEnd=12.03.2023&currencyName=${ticker}`          
           )
           .then((response) => {
             debugger
@@ -51,12 +51,16 @@ const Diagram = (props) => {
 
   }, []);
   return (
-    <Chart
+    !props.diagramData ? (
+      <div className="loader"></div>
+    ) : (
+    <Chart className="diagram"
       chartType="LineChart"
       data={props.diagramData}
       width="100%"
       height="400px"
     />
+    )
   );
 };
 export default Diagram;

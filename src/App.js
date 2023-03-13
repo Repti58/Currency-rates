@@ -10,6 +10,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import MosaicView from "./CurrencyList/MosaicView/MosaicView";
 
 function App() {
+  debugger
   const axios = require("axios").default;
 
   const dispatch = useDispatch();
@@ -26,13 +27,12 @@ function App() {
 
   let ratesData = [];
 
-  const getCurrencyList = async () => {
-    const getModifyDate = selectedDate.replaceAll(".", "/");
+  const getCurrencyList = async () => {    
     try {
       await axios
         .get(
           // `https://currency-rates-backend.vercel.app/api?date=${getModifyDate}`
-          `http://localhost:3003/api?date=${getModifyDate}`
+          `http://localhost:3003/api?date=${selectedDate}`
         )
         .then((response) => {
           ratesData = response.data;
@@ -42,11 +42,12 @@ function App() {
   };
 
   const selectDate = (date) => {
+    debugger
     const modifyDate = new Date(date).toLocaleDateString();
     dispatch(setDate(modifyDate));
   };
 
-  useEffect(() => {
+  useEffect(() => {    
     getCurrencyList();
   }, [selectedDate]);
 
