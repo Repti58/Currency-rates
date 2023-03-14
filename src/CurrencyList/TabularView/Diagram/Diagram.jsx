@@ -2,24 +2,27 @@ import axios from "axios";
 import { useEffect } from "react";
 import { Chart } from "react-google-charts";
 import { useDispatch } from "react-redux";
+import { useParams } from "react-router-dom";
 import { setDiagramData } from "../../../Redux/currencySlice";
 
 
 const Diagram = (props) => {
+  console.log(useParams());
+  const { tickerName } = useParams();
   debugger
-  let ticker
- switch (props.ticker) {
+  let tickerCode
+ switch (tickerName) {
   case "AUD":
-    ticker = "R01010";
+    tickerCode = "R01010";
     break
   case "AZN":
-    ticker = "R01020A"
+    tickerCode = "R01020A"
     break
   case "GBP":
-    ticker = "R01035"
+    tickerCode = "R01035"
     break
   case "AMD":
-    ticker = "R01060"
+    tickerCode = "R01060"
     break
  }
   const dispatch = useDispatch();
@@ -36,12 +39,12 @@ const Diagram = (props) => {
       try {
         await axios     
           .get(
-            `http://localhost:3003/ratesDynamic?dateStart=12/02/2023&dateEnd=12.03.2023&currencyName=${ticker}`          
+            `http://localhost:3003/ratesDynamic?dateStart=12/02/2023&dateEnd=12.03.2023&currencyName=${tickerCode}`          
           )
           .then((response) => {
             debugger
             diagramData = response.data
-            diagramData.unshift(["date" ,props.ticker]);
+            diagramData.unshift(["date", tickerName]);
           });
       } catch {}
       debugger;

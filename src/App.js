@@ -10,7 +10,10 @@ import "react-datepicker/dist/react-datepicker.css";
 import MosaicView from "./CurrencyList/MosaicView/MosaicView";
 
 function App() {
-  debugger
+  debugger;
+  
+  let loader;
+
   const axios = require("axios").default;
 
   const dispatch = useDispatch();
@@ -27,7 +30,7 @@ function App() {
 
   let ratesData = [];
 
-  const getCurrencyList = async () => {    
+  const getCurrencyList = async () => {
     try {
       await axios
         .get(
@@ -42,12 +45,12 @@ function App() {
   };
 
   const selectDate = (date) => {
-    debugger
+    debugger;
     const modifyDate = new Date(date).toLocaleDateString();
     dispatch(setDate(modifyDate));
   };
 
-  useEffect(() => {    
+  useEffect(() => {
     getCurrencyList();
   }, [selectedDate]);
 
@@ -136,21 +139,23 @@ function App() {
                 />
               }
             />
-            <Route
-              path="/AUD"
-              element={
-                <Diagram 
-                  diagramData={diagramData} 
-                  currencyDate={responseDate}
-                  ticker="AUD"
-                />
-              }
-            />
+            
+              <Route
+                path="/ticker/:tickerName"
+                // path="/AUD"
+                element={
+                  <Diagram
+                    diagramData={diagramData}
+                    currencyDate={responseDate}                  
+                  />
+                }
+              />
+            
             <Route
               path="/AZN"
               element={
-                <Diagram 
-                  diagramData={diagramData} 
+                <Diagram
+                  diagramData={diagramData}
                   currencyDate={responseDate}
                   ticker="AZN"
                 />
@@ -159,9 +164,9 @@ function App() {
             <Route
               path="/GBP"
               element={
-                <Diagram 
+                <Diagram
                   diagramData={diagramData}
-                  currencyDate={responseDate} 
+                  currencyDate={responseDate}
                   ticker="GBP"
                 />
               }
@@ -169,9 +174,9 @@ function App() {
             <Route
               path="/AMD"
               element={
-                <Diagram 
+                <Diagram
                   diagramData={diagramData}
-                  currencyDate={responseDate} 
+                  currencyDate={responseDate}
                   ticker="AMD"
                 />
               }

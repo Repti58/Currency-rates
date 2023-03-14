@@ -1,8 +1,10 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { NavLink } from "react-router-dom/dist";
 import "./TabularView.css";
 
 const TabularView = (props) => {
+  const ticker = "AUD";
   return (
     <div>
       {!props.currencyItems[2] ? (
@@ -29,9 +31,9 @@ const TabularView = (props) => {
                 <td className="">{i.currencyTicker}</td>
                 <td className="">{i.currencyNominal}</td>
                 <td className="">
-                  <Link to={i.currencyTicker} className="link">
+                  <NavLink to={"ticker/" + `${i.currencyTicker}`} className="link">
                     {i.currencyName}
-                  </Link>
+                  </NavLink>
                 </td>
                 {i.currencyTicker === "USD" ||
                 i.currencyTicker === "EUR" ||
