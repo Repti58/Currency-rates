@@ -37,7 +37,7 @@ const currencySlice = createSlice({
     },
 
     setDiagramData(state, action) {
-      debugger
+      
       state.diagramData = []
       state.diagramData = action.payload;
     },

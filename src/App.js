@@ -10,7 +10,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import MosaicView from "./CurrencyList/MosaicView/MosaicView";
 
 function App() {
-  debugger;
+  
   
   let loader;
 
@@ -45,7 +45,7 @@ function App() {
   };
 
   const selectDate = (date) => {
-    debugger;
+    
     const modifyDate = new Date(date).toLocaleDateString();
     dispatch(setDate(modifyDate));
   };
@@ -141,12 +141,13 @@ function App() {
             />
             
               <Route
-                path="/ticker/:tickerName"
+                path="/ticker/:currencyCode/:currencyTicker/:currencyName"
                 // path="/AUD"
                 element={
                   <Diagram
                     diagramData={diagramData}
-                    currencyDate={responseDate}                  
+                    currencyDate={responseDate}
+                    currencyItems={currencyItems}                 
                   />
                 }
               />
