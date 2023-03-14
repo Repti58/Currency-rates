@@ -39,7 +39,7 @@ const Diagram = (props) => {
     <div className="loader"></div>
   ) : (
     <div>
-      <div className="currency-name">{currencyName}</div>
+      <div className="currency-name">Динамика курса {currencyName} за месяц</div>
       <div className="diagram">
         <Chart          
           chartType="LineChart"
