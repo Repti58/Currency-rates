@@ -31,7 +31,7 @@ const TabularView = (props) => {
                 <td className="">{i.currencyTicker}</td>
                 <td className="">{i.currencyNominal}</td>
                 <td className="">
-                  <NavLink to={`ticker/${i.currencyCode}/${i.currencyTicker}/${i.currencyName}`} className="link">
+                  <NavLink to={`/ticker/${i.currencyCode}/${i.currencyTicker}/${i.currencyName}`} className="link">
                     {i.currencyName}
                   </NavLink>
                 </td>

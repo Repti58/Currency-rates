@@ -35,7 +35,7 @@ const Diagram = (props) => {
     };
     getDiagramData();
   }, []);
-  return !props.diagramData ? (
+  return (!props.diagramData || (props.diagramData[0][1] !== currencyTicker)) ? (
     <div className="loader"></div>
   ) : (
     <div>

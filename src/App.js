@@ -128,7 +128,7 @@ function App() {
                 />
               }
             />
-            <Route
+            {/* <Route
               path="/Currency-rates"
               element={
                 <TabularView
@@ -138,10 +138,10 @@ function App() {
                   diagramData={diagramData}
                 />
               }
-            />
+            /> */}
             
               <Route
-                path="/ticker/:currencyCode/:currencyTicker/:currencyName"
+                path={"/ticker/:currencyCode/:currencyTicker/:currencyName"}
                 // path="/AUD"
                 element={
                   <Diagram
@@ -150,38 +150,8 @@ function App() {
                     currencyItems={currencyItems}                 
                   />
                 }
-              />
-            
-            <Route
-              path="/AZN"
-              element={
-                <Diagram
-                  diagramData={diagramData}
-                  currencyDate={responseDate}
-                  ticker="AZN"
-                />
-              }
-            />
-            <Route
-              path="/GBP"
-              element={
-                <Diagram
-                  diagramData={diagramData}
-                  currencyDate={responseDate}
-                  ticker="GBP"
-                />
-              }
-            />
-            <Route
-              path="/AMD"
-              element={
-                <Diagram
-                  diagramData={diagramData}
-                  currencyDate={responseDate}
-                  ticker="AMD"
-                />
-              }
-            />
+              />           
+           
           </Routes>
         )}
       </div>
