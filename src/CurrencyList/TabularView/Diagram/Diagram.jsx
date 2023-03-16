@@ -7,6 +7,20 @@ import { setDiagramData } from "../../../Redux/currencySlice";
 import "./Diagram.css";
 
 const Diagram = (props) => {
+
+  document.onclick = function(e) {
+    debugger
+    const datePickerMonthSelect = document.querySelector(".react-datepicker-ignore-onclickoutside")
+    const diagram = document.querySelector(".diagram")
+    debugger
+    if (e.target !== datePickerMonthSelect) {
+      diagram.classList.remove("diagram_back-line")
+    } else {
+      diagram.classList.add("diagram_back-line")
+    }
+  }
+
+  
   debugger;
   console.log(useParams());
   const { currencyCode } = useParams();
@@ -23,7 +37,7 @@ const Diagram = (props) => {
       try {
         await axios
           .get(
-            `http://localhost:3003/ratesDynamic?dateStart=12/02/2023&dateEnd=12.03.2023&currencyName=${currencyCode}`
+            `http://localhost:3003/ratesDynamic?dateStart=12/02/2023&dateEnd=16.03.2023&currencyName=${currencyCode}`
           )
           .then((response) => {
             diagramData = response.data;
@@ -40,7 +54,11 @@ const Diagram = (props) => {
   ) : (
     <div>
       <div className="currency-name">Динамика курса {currencyName} за месяц</div>
-      <div className="diagram">
+      <div className="diagram"  
+      // onClick={() => {
+      //     debugger
+      //     diagramToFrontLine()}}
+          >
         <Chart          
           chartType="LineChart"
           data={props.diagramData}

@@ -8,5 +8,9 @@
 
 .diagram {
     position: relative;
+    /* z-index: -1; */
+}
+
+.diagram_back-line {
     z-index: -1;
 }

@@ -10,6 +10,25 @@ import "react-datepicker/dist/react-datepicker.css";
 import MosaicView from "./CurrencyList/MosaicView/MosaicView";
 
 function App() {
+  debugger
+  // const diagram = document.querySelector(".diagram")
+  // const diagramToBackLine = () => {
+  //   debugger
+  //   // const datePicker = document.querySelector(".react-datepicker__month-container")
+  //   diagram.classList.add("diagram_back-line")
+  // }
+  
+  // document.onclick = function(e) {
+  //     const datePickerMonthSelect = document.querySelector(".react-datepicker-ignore-onclickoutside")
+  //     const datePicker = document.querySelector(".date-picker")
+  //     debugger
+  //     if (e.target !== datePickerMonthSelect) {
+  //       diagram.classList.remove("diagram_back-line")
+  //     } else if (e.target == datePicker) {
+  //       diagram.classList.add("diagram_back-line")
+  //     }
+  //   }
+  
   
   
   let loader;
@@ -52,16 +71,23 @@ function App() {
 
   useEffect(() => {
     getCurrencyList();
+    
   }, [selectedDate]);
 
   return (
-    <div className="wrapper">
+    <div className="wrapper" 
+    
+    >
       <header className="sticky">
         <div className="container">
           <div className="title">
             <p>Официальные курсы валют к рублю по данным центробанка РФ</p>
           </div>
-          <span className="date-picker">
+          <span className="date-picker" 
+          // onClick={() => {
+            
+          //   diagramToBackLine()}}
+            >
             <DatePicker
               closeOnScroll={true}
               value={selectedDate}
