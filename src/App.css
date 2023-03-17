@@ -3,10 +3,10 @@
   min-height: 100vh;
 }
 
-.footer { 
+.footer {
   margin-top: 50px;
   margin-bottom: 20px;
-  text-align: center;  
+  text-align: center;
   border-top: solid rgb(131, 131, 131) 2px;
 }
 
@@ -15,7 +15,7 @@
   border: none;
   --bs-btn-bg: rgb(233, 233, 233);
   --bs-btn-hover-bg: rgb(255, 255, 255);
-  --bs-btn-hover-color:  rgb(66, 66, 66);
+  --bs-btn-hover-color: rgb(66, 66, 66);
   --bs-btn-active-bg: rgb(233, 233, 233);
   margin: 2px;
 }
@@ -26,13 +26,26 @@
   margin-bottom: 20px;
 }
 
-.react-datepicker__input-container input {
-  border: solid grey 1px;
+.react-datepicker-wrapper {
+  padding-left: 5px;
+  background: url("../img/svg/calendar3.svg") no-repeat 9px 6px;
+  background-color: #ffffff;
   border-radius: 5px;
 }
 
+.react-datepicker__input-container input {
+  padding-left: 40px;
+  border: solid grey 1px;
+  border-radius: 5px;
+  background-color: transparent;
+}
+
+/* .react-datepicker__input-container input ::before {
+  background: url("../img/svg/calendar.svg") no-repeat left 2px;;
+} */
+
 .title {
-  text-align: center;  
+  text-align: center;
   font-size: 20pt;
   font-weight: 400;
   color: #dfdfdf;
@@ -95,7 +108,7 @@ input {
     padding-left: 5px;
     padding-right: 5px;
   }
-  .table>:not(caption)>*>* {
+  .table > :not(caption) > * > * {
     padding: 3px;
   }
   .footer {
@@ -104,7 +117,7 @@ input {
 }
 @media screen and (max-width: 510px) {
   .title {
-  font-size: 16px;
+    font-size: 16px;
   }
   input {
     font-size: 12px;
@@ -112,26 +125,22 @@ input {
 }
 
 @media screen and (max-width: 509px) {
-  .sticky {    
+  .sticky {
     top: -87px;
   }
 }
 @media screen and (min-width: 510px) {
-  .sticky {    
+  .sticky {
     top: -120px;
   }
 }
 @media screen and (min-width: 768px) {
-  .sticky {    
+  .sticky {
     top: -117px;
   }
 }
 @media screen and (min-width: 992px) {
-  .sticky {    
+  .sticky {
     top: -80px;
   }
 }
-
-
-
-

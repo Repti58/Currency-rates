@@ -7,20 +7,66 @@ import { setDiagramData } from "../../../Redux/currencySlice";
 import "./Diagram.css";
 
 const Diagram = (props) => {
+  const selectedDate = props.selectedDate;
 
-  document.onclick = function(e) {
-    debugger
-    const datePickerMonthSelect = document.querySelector(".react-datepicker-ignore-onclickoutside")
-    const diagram = document.querySelector(".diagram")
-    debugger
-    if (e.target !== datePickerMonthSelect) {
-      diagram.classList.remove("diagram_back-line")
-    } else {
-      diagram.classList.add("diagram_back-line")
+  setTimeout(() => {
+    const diagram = document.querySelector(".diagram");
+    const datePickerMonthSelect = document.querySelector(
+      ".date-picker-container"
+    );
+
+    debugger;
+    datePickerMonthSelect.addEventListener("focusin", function () {
+      if (diagram) {
+        diagram.classList.add("diagram_back-line");
+      }
+    });
+    if (diagram) {
+      datePickerMonthSelect.addEventListener("focusout", function () {
+        diagram.classList.remove("diagram_back-line");
+      });
     }
-  }
+  }, 0);
 
-  
+  //  if (!datePickerMonthSelect && diagramclass){
+  //   diagramclass.classList.remove("diagram_back-line");
+
+  // };
+
+  // const fixOverlay = (props) => {
+  //   debugger
+  //   const datePickerMonthSelect = document.querySelector(".react-datepicker-ignore-onclickoutside")
+  //   const diagram = document.querySelector(".diagram")
+  //   debugger
+  //   if (props.target !== (datePickerMonthSelect)) {
+  //     diagram.classList.remove("diagram_back-line")
+  //   } else {
+  //     diagram.classList.add("diagram_back-line")
+  //   }
+  // }
+  // document.onselect = function(e) {
+  //   // fixOverlay(e)
+  //   debugger
+  //     const datePickerMonthSelect = document.querySelector(".react-datepicker-ignore-onclickoutside")
+  //     const diagram = document.querySelector(".diagram")
+  //     if (e.target !== (datePickerMonthSelect)) {
+  //       diagram.classList.remove("diagram_back-line")
+  //     } else {
+  //       diagram.classList.add("diagram_back-line")
+  //     }
+  // }
+  // document.onclick = function(e) {
+  //   // fixOverlay(e)
+  //   debugger
+  //     const datePickerMonthSelect = document.querySelector(".react-datepicker-ignore-onclickoutside")
+  //     const diagram = document.querySelector(".diagram")
+  //     if (e.target !== (datePickerMonthSelect)) {
+  //       diagram.classList.remove("diagram_back-line")
+  //     } else {
+  //       diagram.classList.add("diagram_back-line")
+  //     }
+  // }
+
   debugger;
   console.log(useParams());
   const { currencyCode } = useParams();
@@ -32,12 +78,13 @@ const Diagram = (props) => {
   let diagramData;
 
   useEffect(() => {
+    debugger;
     setDiagramData();
     const getDiagramData = async () => {
       try {
         await axios
           .get(
-            `http://localhost:3003/ratesDynamic?dateStart=12/02/2023&dateEnd=16.03.2023&currencyName=${currencyCode}`
+            `http://localhost:3003/ratesDynamic?dateStart=15.02.2023&dateEnd=${selectedDate}&currencyName=${currencyCode}`
           )
           .then((response) => {
             diagramData = response.data;
@@ -48,18 +95,21 @@ const Diagram = (props) => {
       dispatch(setDiagramData(diagramData));
     };
     getDiagramData();
-  }, []);
-  return (!props.diagramData || (props.diagramData[0][1] !== currencyTicker)) ? (
+  }, [selectedDate]);
+  return !props.diagramData || props.diagramData[0][1] !== currencyTicker ? (
     <div className="loader"></div>
   ) : (
     <div>
-      <div className="currency-name">Динамика курса {currencyName} за месяц</div>
-      <div className="diagram"  
-      // onClick={() => {
-      //     debugger
-      //     diagramToFrontLine()}}
-          >
-        <Chart          
+      <div className="currency-name">
+        Динамика курса {currencyName} за месяц
+      </div>
+      <div
+        className="diagram"
+        // onClick={() => {
+        //     debugger
+        //     diagramToFrontLine()}}
+      >
+        <Chart
           chartType="LineChart"
           data={props.diagramData}
           width="100%"

@@ -8,17 +8,9 @@ const currencySlice = createSlice({
       [{ id: "0", currencyPriceYesterday: "" }],
     ],
     date: new Date().toLocaleDateString('en-GB').replaceAll("/", "."),
-    diagramData: undefined
-   
-    // ["date", "XXX"],
-    // ["01.01", 79],
-    // ["02.01", 75],
-    // ["03.01", 74],
-    // ["04.01", 73],
-    // ["05.01", 76],
-    // ["06.01", 73],
-    // ["07.01", 74],
-    // ["08.01", 75]
+    diagramData: undefined,
+    datePickerSwitcher: "disabled",
+  
   
   },
   reducers: {
@@ -41,6 +33,10 @@ const currencySlice = createSlice({
       state.diagramData = []
       state.diagramData = action.payload;
     },
+
+    setDatePickerSwitcher(state, action) {
+      state.datePicker = action.payload
+    }
     
   },
 });
