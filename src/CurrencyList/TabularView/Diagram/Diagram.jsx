@@ -7,6 +7,7 @@ import { setDiagramData } from "../../../Redux/currencySlice";
 import "./Diagram.css";
 
 const Diagram = (props) => {
+  debugger
   const selectedDate = props.selectedDate;
 
   setTimeout(() => {
@@ -15,7 +16,6 @@ const Diagram = (props) => {
       ".date-picker-container"
     );
 
-    debugger;
     datePickerMonthSelect.addEventListener("focusin", function () {
       if (diagram) {
         diagram.classList.add("diagram_back-line");
@@ -26,9 +26,8 @@ const Diagram = (props) => {
         diagram.classList.remove("diagram_back-line");
       });
     }
-  }, 0); 
+  }, 0);
 
-  debugger;
   console.log(useParams());
   const { currencyCode } = useParams();
   const { currencyTicker } = useParams();
@@ -39,7 +38,7 @@ const Diagram = (props) => {
   let diagramData;
 
   const getDiagramData = async (startDate) => {
-    startDate = (startDate? startDate : "01.01.2022")
+    startDate = startDate ? startDate : "01.01.2022";
     try {
       await axios
         .get(
@@ -55,10 +54,34 @@ const Diagram = (props) => {
   };
 
   useEffect(() => {
-    debugger;
-    setDiagramData();    
+    setDiagramData();
     getDiagramData();
   }, [selectedDate]);
+
+  const getRange = (range) => {
+    debugger
+    // dispatch(setDiagramData(undefined));
+    const date = new Date();
+    switch(range) {
+      case 'month':
+        date.setMonth(date.getMonth() -1);
+        break;
+      case 'three-month':
+        date.setMonth(date.getMonth() -3);
+        break;
+      case 'six-month':
+        date.setMonth(date.getMonth() -6);
+        break;
+      case 'year':
+        date.setFullYear(date.getFullYear() -1);
+        break;
+      case 'three-years':
+        date.setFullYear(date.getFullYear() -3);
+        break;
+    }
+    return date.toLocaleDateString("en-GB").replaceAll("/", ".");
+  };
+  
   return !props.diagramData || props.diagramData[0][1] !== currencyTicker ? (
     <div className="loader"></div>
   ) : (
@@ -67,19 +90,35 @@ const Diagram = (props) => {
         Динамика курса {currencyName} за месяц
       </div>
       <div className="range">
-        
-        <span onClick={() => getDiagramData('01.01.2019')}>Месяц</span>
-        <span>3 Месяца</span>
-        <span>6 Месяцев</span>
-        <span>Год</span>
+          <span className="rangeName" onClick={() => {
+            getDiagramData(getRange('three-years'));
+          }}>3 Года
+          </span>
+          <span className="rangeName" onClick={() => {
+              getDiagramData(getRange('year'));
+              }}>Год
+          </span>
+          <span className="rangeName" onClick={() => {
+            getDiagramData(getRange('six-month'));
+              }}>6 Месяцев
+          </span>
+          <span className="rangeName" onClick={() => {
+            getDiagramData(getRange('three-month'));
+              }}>3 Месяца
+          </span>
+          <span className="rangeName" onClick={() => {
+              getDiagramData(getRange('month'));
+              }}>Месяц
+          </span>
+         
       </div>
-      <div className="diagram">      
+      <div className="diagram">
         <Chart
           chartType="LineChart"
           data={props.diagramData}
           width="100%"
           height="400px"
-        /> 
+        />
       </div>
     </div>
   );

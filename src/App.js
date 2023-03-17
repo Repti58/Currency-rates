@@ -10,6 +10,7 @@ import "react-datepicker/dist/react-datepicker.css";
 import MosaicView from "./CurrencyList/MosaicView/MosaicView";
 
 function App() {  
+  
   const axios = require("axios").default;
   const dispatch = useDispatch();
   const currencyItems = useSelector((state) => state.currencySlice.currency[1]);
@@ -21,7 +22,6 @@ function App() {
     (state) => state.currencySlice.currency[0].prevCurrencyDate
   );
   const diagramData = useSelector((state) => state.currencySlice.diagramData);
-  const datePickerSwitcher = useSelector((state) => state.datePickerSwitcher);
 
   let ratesData = [];
 
@@ -65,7 +65,9 @@ function App() {
               <DatePicker
                 closeOnScroll={true}
                 value={selectedDate}
-                onChange={(date) => selectDate(date)}
+                onChange={(date) => {
+                  
+                  selectDate(date)}}
                 peekNextMonth
                 showMonthDropdown
                 showYearDropdown

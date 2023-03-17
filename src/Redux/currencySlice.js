@@ -9,7 +9,7 @@ const currencySlice = createSlice({
     ],
     date: new Date().toLocaleDateString('en-GB').replaceAll("/", "."),
     diagramData: undefined,
-    datePickerSwitcher: "disabled",
+    
   
   
   },
@@ -28,15 +28,12 @@ const currencySlice = createSlice({
       state.date = action.payload;
     },
 
-    setDiagramData(state, action) {
-      
+    setDiagramData(state, action) {      
       state.diagramData = []
       state.diagramData = action.payload;
     },
 
-    setDatePickerSwitcher(state, action) {
-      state.datePicker = action.payload
-    }
+    
     
   },
 });

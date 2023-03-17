@@ -16,5 +16,13 @@
 }
 
 .range {
+   margin-bottom: 5px; 
+}
+
+.rangeName {
+    border: solid rgb(174, 174, 174) 1px;
+    border-radius: 6px;
+    margin: 3px 5px;
+    padding: 3px 3px;
     cursor: pointer;
 }
