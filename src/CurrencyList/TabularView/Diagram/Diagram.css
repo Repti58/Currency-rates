@@ -14,3 +14,7 @@
 .diagram_back-line {
     z-index: -100;
 }
+
+.range {
+    cursor: pointer;
+}

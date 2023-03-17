@@ -26,46 +26,7 @@ const Diagram = (props) => {
         diagram.classList.remove("diagram_back-line");
       });
     }
-  }, 0);
-
-  //  if (!datePickerMonthSelect && diagramclass){
-  //   diagramclass.classList.remove("diagram_back-line");
-
-  // };
-
-  // const fixOverlay = (props) => {
-  //   debugger
-  //   const datePickerMonthSelect = document.querySelector(".react-datepicker-ignore-onclickoutside")
-  //   const diagram = document.querySelector(".diagram")
-  //   debugger
-  //   if (props.target !== (datePickerMonthSelect)) {
-  //     diagram.classList.remove("diagram_back-line")
-  //   } else {
-  //     diagram.classList.add("diagram_back-line")
-  //   }
-  // }
-  // document.onselect = function(e) {
-  //   // fixOverlay(e)
-  //   debugger
-  //     const datePickerMonthSelect = document.querySelector(".react-datepicker-ignore-onclickoutside")
-  //     const diagram = document.querySelector(".diagram")
-  //     if (e.target !== (datePickerMonthSelect)) {
-  //       diagram.classList.remove("diagram_back-line")
-  //     } else {
-  //       diagram.classList.add("diagram_back-line")
-  //     }
-  // }
-  // document.onclick = function(e) {
-  //   // fixOverlay(e)
-  //   debugger
-  //     const datePickerMonthSelect = document.querySelector(".react-datepicker-ignore-onclickoutside")
-  //     const diagram = document.querySelector(".diagram")
-  //     if (e.target !== (datePickerMonthSelect)) {
-  //       diagram.classList.remove("diagram_back-line")
-  //     } else {
-  //       diagram.classList.add("diagram_back-line")
-  //     }
-  // }
+  }, 0); 
 
   debugger;
   console.log(useParams());
@@ -77,23 +38,25 @@ const Diagram = (props) => {
 
   let diagramData;
 
+  const getDiagramData = async (startDate) => {
+    startDate = (startDate? startDate : "01.01.2022")
+    try {
+      await axios
+        .get(
+          `http://localhost:3003/ratesDynamic?dateStart=${startDate}&dateEnd=${selectedDate}&currencyName=${currencyCode}`
+        )
+        .then((response) => {
+          diagramData = response.data;
+          diagramData.unshift(["date", currencyTicker]);
+        });
+    } catch {}
+
+    dispatch(setDiagramData(diagramData));
+  };
+
   useEffect(() => {
     debugger;
-    setDiagramData();
-    const getDiagramData = async () => {
-      try {
-        await axios
-          .get(
-            `http://localhost:3003/ratesDynamic?dateStart=15.02.2023&dateEnd=${selectedDate}&currencyName=${currencyCode}`
-          )
-          .then((response) => {
-            diagramData = response.data;
-            diagramData.unshift(["date", currencyTicker]);
-          });
-      } catch {}
-
-      dispatch(setDiagramData(diagramData));
-    };
+    setDiagramData();    
     getDiagramData();
   }, [selectedDate]);
   return !props.diagramData || props.diagramData[0][1] !== currencyTicker ? (
@@ -103,18 +66,20 @@ const Diagram = (props) => {
       <div className="currency-name">
         Динамика курса {currencyName} за месяц
       </div>
-      <div
-        className="diagram"
-        // onClick={() => {
-        //     debugger
-        //     diagramToFrontLine()}}
-      >
+      <div className="range">
+        
+        <span onClick={() => getDiagramData('01.01.2019')}>Месяц</span>
+        <span>3 Месяца</span>
+        <span>6 Месяцев</span>
+        <span>Год</span>
+      </div>
+      <div className="diagram">      
         <Chart
           chartType="LineChart"
           data={props.diagramData}
           width="100%"
           height="400px"
-        />
+        /> 
       </div>
     </div>
   );
