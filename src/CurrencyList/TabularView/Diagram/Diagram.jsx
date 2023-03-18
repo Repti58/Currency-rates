@@ -3,7 +3,7 @@ import { useEffect } from "react";
 import { Chart } from "react-google-charts";
 import { useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
-import { setDiagramData } from "../../../Redux/currencySlice";
+import { setDiagramData, setDiagramRangeReady, setSelectedRange } from "../../../Redux/currencySlice";
 import "./Diagram.css";
 
 const Diagram = (props) => {
@@ -38,7 +38,8 @@ const Diagram = (props) => {
   let diagramData;
 
   const getDiagramData = async (startDate) => {
-    startDate = startDate ? startDate : "01.01.2022";
+    debugger
+    startDate = startDate ? startDate : getRange(props.selectedRange);
     try {
       await axios
         .get(
@@ -51,6 +52,7 @@ const Diagram = (props) => {
     } catch {}
 
     dispatch(setDiagramData(diagramData));
+    dispatch(setDiagramRangeReady(true));
   };
 
   useEffect(() => {
@@ -60,7 +62,7 @@ const Diagram = (props) => {
 
   const getRange = (range) => {
     debugger
-    // dispatch(setDiagramData(undefined));
+    dispatch(setDiagramRangeReady(false));
     const date = new Date();
     switch(range) {
       case 'month':
@@ -87,30 +89,41 @@ const Diagram = (props) => {
   ) : (
     <div>
       <div className="currency-name">
-        Динамика курса {currencyName} за месяц
+        Динамика курса {currencyName}
       </div>
       <div className="range">
-          <span className="rangeName" onClick={() => {
+          <span className={props.selectedRange === "three-years"? "rangeName selectedRange" : "rangeName"} onClick={() => {
+            dispatch(setSelectedRange('three-years'))
             getDiagramData(getRange('three-years'));
-          }}>3 Года
+          }}>3Г
           </span>
-          <span className="rangeName" onClick={() => {
+          <span className={props.selectedRange === "year"? "rangeName selectedRange" : "rangeName"} onClick={() => {
+            dispatch(setSelectedRange('year'))
               getDiagramData(getRange('year'));
-              }}>Год
+              }}>1Г
           </span>
-          <span className="rangeName" onClick={() => {
+          <span className={props.selectedRange === "six-month"? "rangeName selectedRange" : "rangeName"} onClick={() => {
+            dispatch(setSelectedRange('six-month'))
             getDiagramData(getRange('six-month'));
-              }}>6 Месяцев
+              }}>6М
           </span>
-          <span className="rangeName" onClick={() => {
+          <span className={props.selectedRange === "three-month"? "rangeName selectedRange" : "rangeName"} onClick={() => {
+            dispatch(setSelectedRange('three-month'))
             getDiagramData(getRange('three-month'));
-              }}>3 Месяца
+              }}>3М
           </span>
-          <span className="rangeName" onClick={() => {
+          <span className={props.selectedRange === "month"? "rangeName selectedRange" : "rangeName"} onClick={() => {
+            dispatch(setSelectedRange('month'))
               getDiagramData(getRange('month'));
-              }}>Месяц
+              }}>1М
           </span>
          
+      </div>
+      <div>
+      {function() {
+        debugger
+        return !props.diagramRangeReady? <div className="loader"></div> : null}}
+        
       </div>
       <div className="diagram">
         <Chart

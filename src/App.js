@@ -22,7 +22,8 @@ function App() {
     (state) => state.currencySlice.currency[0].prevCurrencyDate
   );
   const diagramData = useSelector((state) => state.currencySlice.diagramData);
-
+  const diagramRangeReady = useSelector((state) => state.currencySlice.diagramRangeReady)
+  const selectedRange = useSelector((state) => state.currencySlice.selectedRange)
   let ratesData = [];
 
   const getCurrencyList = async () => {
@@ -74,7 +75,7 @@ function App() {
                 dropdownMode="select"
                 disabledKeyboardNavigation
                 withPortal
-                // disabled
+                disabled
               />
             </div>
           </span>
@@ -154,6 +155,8 @@ function App() {
                   currencyDate={responseDate}
                   currencyItems={currencyItems}
                   selectedDate={selectedDate}
+                  diagramRangeReady={diagramRangeReady}
+                  selectedRange={selectedRange}
                 />
               }
             />
