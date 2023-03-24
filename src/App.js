@@ -120,11 +120,11 @@ function App() {
         ) : (
           <Routes>
             <Route
-              path="/mosaic-view"
+              path="Currency-rates/mosaic-view"
               element={<MosaicView currencyItems={currencyItems} />}
             />
             <Route
-              path={"/tabular-view" && "/*"}
+              path={"Currency-rates/tabular-view" && "/*"}
               element={
                 <TabularView
                   currencyItems={currencyItems}
@@ -147,7 +147,7 @@ function App() {
             /> */}
 
             <Route
-              path={"/ticker/:currencyCode/:currencyTicker/:currencyName"}
+              path={"Currency-rates/ticker/:currencyCode/:currencyTicker/:currencyName"}
               // path="/AUD"
               element={
                 <Diagram
