@@ -75,7 +75,7 @@ function App() {
                 dropdownMode="select"
                 disabledKeyboardNavigation
                 withPortal
-                disabled
+                // disabled
               />
             </div>
           </span>

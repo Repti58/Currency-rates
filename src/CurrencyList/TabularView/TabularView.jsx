@@ -4,7 +4,6 @@ import { NavLink } from "react-router-dom/dist";
 import "./TabularView.css";
 
 const TabularView = (props) => {
-  const ticker = "AUD";
   return (
     <div>
       {!props.currencyItems[2] ? (
@@ -14,7 +13,7 @@ const TabularView = (props) => {
           <thead>
             <tr>
               <th>Букв код</th>
-              <th>Единиц</th>
+              {/* <th>Единиц</th> */}
               <th>Валюта</th>
               <th className="currency-hcell">
                 Курс<br></br>
@@ -29,7 +28,7 @@ const TabularView = (props) => {
             {props.currencyItems.map((i) => (
               <tr key={i.id}>                
                 <td className="">{i.currencyTicker}</td>
-                <td className="">{i.currencyNominal}</td>
+                {/* <td className="">{i.currencyNominal}</td> */}
                 <td className="">
                   <NavLink to={`/ticker/${i.currencyCode}/${i.currencyTicker}/${i.currencyName}`} className="link">
                     {i.currencyName}
@@ -37,13 +36,18 @@ const TabularView = (props) => {
                 </td>
                 {i.currencyTicker === "USD" ||
                 i.currencyTicker === "EUR" ||
-                i.currencyTicker === "GBP" ||
-                i.currencyTicker === "JPY" ? (
+                // i.currencyTicker === "GBP" ||
+                i.currencyTicker === "TRY" ? (
                   <td className="currency-cell accent">
+                   
                     {i.currencyPriceToday}
+                    
                   </td>
                 ) : (
-                  <td className="currency-cell">{i.currencyPriceToday}</td>
+                  <td className="currency-cell">
+                    
+                    {i.currencyPriceToday}</td>
+                    
                 )}
                 {i.currencyPriceYesterday ? (
                   <td className="difference">{i.difference}</td>

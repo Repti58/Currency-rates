@@ -11,7 +11,7 @@ const MosaicView = (props) => {
             key={i.id}
             currencyTicker={i.currencyTicker}
             currencyName={i.currencyName}
-            currencyNominal={i.currencyNominal}
+            // currencyNominal={i.currencyNominal}
             currencyPriceToday={i.currencyPriceToday}
             currencyPriceYesterday={i.currencyPriceYesterday}
           />

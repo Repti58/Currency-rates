@@ -33,3 +33,7 @@
 .selectedRange {
     border: solid rgb(83, 83, 83) 2px;
 }
+
+/* .date-picker-disabled {
+    background-color: black;
+} */

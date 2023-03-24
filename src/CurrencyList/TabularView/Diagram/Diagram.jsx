@@ -7,9 +7,10 @@ import { setDiagramData, setDiagramRangeReady, setSelectedRange } from "../../..
 import "./Diagram.css";
 
 const Diagram = (props) => {
+  
   debugger
-  const selectedDate = props.selectedDate;
-
+  // const selectedDate = props.selectedDate;
+  const currentDate = new Date().toLocaleDateString('en-GB').replaceAll("/", ".")
   setTimeout(() => {
     const diagram = document.querySelector(".diagram");
     const datePickerMonthSelect = document.querySelector(
@@ -43,7 +44,7 @@ const Diagram = (props) => {
     try {
       await axios
         .get(
-          `http://localhost:3003/ratesDynamic?dateStart=${startDate}&dateEnd=${selectedDate}&currencyName=${currencyCode}`
+          `http://localhost:3003/ratesDynamic?dateStart=${startDate}&dateEnd=${currentDate}&currencyName=${currencyCode}`
         )
         .then((response) => {
           diagramData = response.data;
@@ -58,7 +59,9 @@ const Diagram = (props) => {
   useEffect(() => {
     setDiagramData();
     getDiagramData();
-  }, [selectedDate]);
+  }, [
+    // selectedDate
+  ]);
 
   const getRange = (range) => {
     debugger
@@ -89,7 +92,7 @@ const Diagram = (props) => {
   ) : (
     <div>
       <div className="currency-name">
-        Динамика курса {currencyName}
+        {currencyName}. Текущий курс - {props.diagramData[props.diagramData.length -1][1]}
       </div>
       <div className="range">
           <span className={props.selectedRange === "three-years"? "rangeName selectedRange" : "rangeName"} onClick={() => {
