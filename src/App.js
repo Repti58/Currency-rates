@@ -80,7 +80,7 @@ function App() {
             </div>
           </span>
           <span className="view-buttons">
-            <Link to="/tabular-view">
+            <Link to="Currency-rates/tabular-view">
               <button type="button" className="btn btn-primary btn-sm">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -97,7 +97,7 @@ function App() {
                 </svg>
               </button>
             </Link>
-            <Link to="/mosaic-view">
+            <Link to="Currency-rates/mosaic-view">
               <button type="button" className="btn btn-primary btn-sm">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
