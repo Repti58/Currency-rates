@@ -30,8 +30,8 @@ function App() {
     try {
       await axios
         .get(
-          // `https://currency-rates-backend.vercel.app/api?date=${getModifyDate}`
-          `http://localhost:3003/api?date=${selectedDate}`
+          `https://currency-rates-backend.vercel.app/api?date=${selectedDate}`
+          // `http://localhost:3003/api?date=${selectedDate}`
         )
         .then((response) => {
           ratesData = response.data;
