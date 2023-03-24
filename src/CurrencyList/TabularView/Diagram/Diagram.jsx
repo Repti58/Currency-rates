@@ -8,7 +8,7 @@ import "./Diagram.css";
 
 const Diagram = (props) => {
   
-  debugger
+  
   // const selectedDate = props.selectedDate;
   const currentDate = new Date().toLocaleDateString('en-GB').replaceAll("/", ".")
   setTimeout(() => {
@@ -39,7 +39,7 @@ const Diagram = (props) => {
   let diagramData;
 
   const getDiagramData = async (startDate) => {
-    debugger
+    
     startDate = startDate ? startDate : getRange(props.selectedRange);
     try {
       await axios
@@ -64,7 +64,7 @@ const Diagram = (props) => {
   ]);
 
   const getRange = (range) => {
-    debugger
+    
     dispatch(setDiagramRangeReady(false));
     const date = new Date();
     switch(range) {
@@ -124,7 +124,7 @@ const Diagram = (props) => {
       </div>
       <div>
       {function() {
-        debugger
+        
         return !props.diagramRangeReady? <div className="loader"></div> : null}}
         
       </div>

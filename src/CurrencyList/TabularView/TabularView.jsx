@@ -1,5 +1,4 @@
 import React from "react";
-import { Link } from "react-router-dom";
 import { NavLink } from "react-router-dom/dist";
 import "./TabularView.css";
 
@@ -12,7 +11,7 @@ const TabularView = (props) => {
         <table className="table table table-striped table-hover">
           <thead>
             <tr>
-              <th>Букв код</th>
+              <th>Код</th>
               {/* <th>Единиц</th> */}
               <th>Валюта</th>
               <th className="currency-hcell">
@@ -36,7 +35,6 @@ const TabularView = (props) => {
                 </td>
                 {i.currencyTicker === "USD" ||
                 i.currencyTicker === "EUR" ||
-                // i.currencyTicker === "GBP" ||
                 i.currencyTicker === "TRY" ? (
                   <td className="currency-cell accent">
                    
