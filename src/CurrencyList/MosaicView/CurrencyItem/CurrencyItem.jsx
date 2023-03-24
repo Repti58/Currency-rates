@@ -18,9 +18,9 @@ const CurrencyItem = (props) => {
           {props.currencyPriceYesterday === props.currencyPriceToday ? (
             <></>
           ) : props.currencyPriceYesterday > props.currencyPriceToday ? (
-            <div className="currency-item__currency-move-down">▼</div>
+            <div className="currency-item-mosaic__currency-move-down">▼</div>
           ) : (
-            <div className="currency-item__currency-move-up">▲</div>
+            <div className="currency-item-mosaic__currency-move-up">▲</div>
           )}
         </div>
       </div>
