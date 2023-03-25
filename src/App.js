@@ -1,16 +1,18 @@
 import "./App.css";
-import { Link, Route, Routes } from "react-router-dom";
+import { Link, Route, Routes, useParams } from "react-router-dom";
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setCurrencyList, setDate } from "./Redux/currencySlice";
 import TabularView from "./CurrencyList/TabularView/TabularView";
 import DatePicker from "react-datepicker";
-import Diagram from "./CurrencyList/TabularView/Diagram/Diagram";
+// import Diagram from "./CurrencyList/TabularView/Diagram/Chart";
 import "react-datepicker/dist/react-datepicker.css";
 import MosaicView from "./CurrencyList/MosaicView/MosaicView";
+import Chart from "./CurrencyList/TabularView/Diagram/Chart";
 
-function App() {  
-  
+function App() {
+  const datePickerSwitcher = false;
+  debugger
   const axios = require("axios").default;
   const dispatch = useDispatch();
   const currencyItems = useSelector((state) => state.currencySlice.currency[1]);
@@ -22,8 +24,12 @@ function App() {
     (state) => state.currencySlice.currency[0].prevCurrencyDate
   );
   const diagramData = useSelector((state) => state.currencySlice.diagramData);
-  const diagramRangeReady = useSelector((state) => state.currencySlice.diagramRangeReady)
-  const selectedRange = useSelector((state) => state.currencySlice.selectedRange)
+  const diagramRangeReady = useSelector(
+    (state) => state.currencySlice.diagramRangeReady
+  );
+  const selectedRange = useSelector(
+    (state) => state.currencySlice.selectedRange
+  );
   let ratesData = [];
 
   const getCurrencyList = async () => {
@@ -63,12 +69,16 @@ function App() {
             //   diagramToBackLine()}}
           >
             <div className="date-picker-container">
-              <DatePicker
+<Routes>
+            <Route
+              path={"/tabular-view"}
+              element={
+                <DatePicker
                 closeOnScroll={true}
                 value={selectedDate}
                 onChange={(date) => {
-                  
-                  selectDate(date)}}
+                  selectDate(date);
+                }}
                 peekNextMonth
                 showMonthDropdown
                 showYearDropdown
@@ -77,27 +87,30 @@ function App() {
                 withPortal
                 // disabled
               />
+              
+              }
+            />
+             </Routes> 
+              
+              
             </div>
           </span>
           <span className="view-buttons">
-            <Link to="Currency-rates/tabular-view">
+            <Link to="/tabular-view">
               <button type="button" className="btn btn-primary btn-sm">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="16"
-                  height="20"
+                  height="16"
                   fill="currentColor"
-                  // class="bi bi-list-ul"
+                  class="bi bi-table"
                   viewBox="0 0 16 16"
                 >
-                  <path
-                    // fill-rule="evenodd"
-                    d="M5 11.5a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zm0-4a.5.5 0 0 1 .5-.5h9a.5.5 0 0 1 0 1h-9a.5.5 0 0 1-.5-.5zm-3 1a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm0 4a1 1 0 1 0 0-2 1 1 0 0 0 0 2zm0 4a1 1 0 1 0 0-2 1 1 0 0 0 0 2z"
-                  />
+                  <path d="M0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2zm15 2h-4v3h4V4zm0 4h-4v3h4V8zm0 4h-4v3h3a1 1 0 0 0 1-1v-2zm-5 3v-3H6v3h4zm-5 0v-3H1v2a1 1 0 0 0 1 1h3zm-4-4h4V8H1v3zm0-4h4V4H1v3zm5-3v3h4V4H6zm4 4H6v3h4V8z" />
                 </svg>
               </button>
             </Link>
-            <Link to="Currency-rates/mosaic-view">
+            {/* <Link to="Currency-rates/mosaic-view">
               <button type="button" className="btn btn-primary btn-sm">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
@@ -110,7 +123,7 @@ function App() {
                   <path d="M1 2.5A1.5 1.5 0 0 1 2.5 1h3A1.5 1.5 0 0 1 7 2.5v3A1.5 1.5 0 0 1 5.5 7h-3A1.5 1.5 0 0 1 1 5.5v-3zm8 0A1.5 1.5 0 0 1 10.5 1h3A1.5 1.5 0 0 1 15 2.5v3A1.5 1.5 0 0 1 13.5 7h-3A1.5 1.5 0 0 1 9 5.5v-3zm-8 8A1.5 1.5 0 0 1 2.5 9h3A1.5 1.5 0 0 1 7 10.5v3A1.5 1.5 0 0 1 5.5 15h-3A1.5 1.5 0 0 1 1 13.5v-3zm8 0A1.5 1.5 0 0 1 10.5 9h3a1.5 1.5 0 0 1 1.5 1.5v3a1.5 1.5 0 0 1-1.5 1.5h-3A1.5 1.5 0 0 1 9 13.5v-3z" />
                 </svg>
               </button>
-            </Link>
+            </Link> */}
           </span>
         </div>
       </header>
@@ -119,10 +132,10 @@ function App() {
           <div className="no-data">За выбранный период данных не найдено</div>
         ) : (
           <Routes>
-            <Route
+            {/* <Route
               path="/Currency-rates/mosaic-view"
               element={<MosaicView currencyItems={currencyItems} />}
-            />
+            /> */}
             <Route
               path={"/Currency-rates/tabular-view" && "/*"}
               element={
@@ -147,10 +160,10 @@ function App() {
             /> */}
 
             <Route
-              path={"/Currency-rates/ticker/:currencyCode/:currencyTicker/:currencyName"}
+              path={"/Chart/:currencyCode/:currencyTicker/:currencyName"}
               // path="/AUD"
               element={
-                <Diagram
+                <Chart
                   diagramData={diagramData}
                   currencyDate={responseDate}
                   currencyItems={currencyItems}

@@ -1,12 +1,12 @@
 import axios from "axios";
 import { useEffect } from "react";
-import { Chart } from "react-google-charts";
+import { Chart as Charts } from "react-google-charts";
 import { useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 import { setDiagramData, setDiagramRangeReady, setSelectedRange } from "../../../Redux/currencySlice";
-import "./Diagram.css";
+import "./Chart.css";
 
-const Diagram = (props) => {
+const Chart = (props) => {
   
   
   // const selectedDate = props.selectedDate;
@@ -130,7 +130,8 @@ const Diagram = (props) => {
         
       </div>
       <div className="diagram">
-        <Chart
+        <Charts
+          // chartType="SteppedAreaChart"
           chartType="LineChart"
           data={props.diagramData}
           width="100%"
@@ -140,4 +141,4 @@ const Diagram = (props) => {
     </div>
   );
 };
-export default Diagram;
+export default Chart;

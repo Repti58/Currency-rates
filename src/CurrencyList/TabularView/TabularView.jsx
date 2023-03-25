@@ -1,5 +1,5 @@
 import React from "react";
-import { NavLink } from "react-router-dom/dist";
+import { Link } from "react-router-dom/dist";
 import "./TabularView.css";
 
 const TabularView = (props) => {
@@ -29,9 +29,9 @@ const TabularView = (props) => {
                 <td className="">{i.currencyTicker}</td>
                 {/* <td className="">{i.currencyNominal}</td> */}
                 <td className="">
-                  <NavLink to={`Currency-rates/ticker/${i.currencyCode}/${i.currencyTicker}/${i.currencyName}`} className="link">
+                  <Link to={`/Chart/${i.currencyCode}/${i.currencyTicker}/${i.currencyName}`} className="link">
                     {i.currencyName}
-                  </NavLink>
+                  </Link>
                 </td>
                 {i.currencyTicker === "USD" ||
                 i.currencyTicker === "EUR" ||
