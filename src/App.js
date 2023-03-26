@@ -69,10 +69,7 @@ function App() {
             //   diagramToBackLine()}}
           >
             <div className="date-picker-container">
-<Routes>
-            <Route
-              path={"/tabular-view"}
-              element={
+
                 <DatePicker
                 closeOnScroll={true}
                 value={selectedDate}
@@ -88,9 +85,7 @@ function App() {
                 // disabled
               />
               
-              }
-            />
-             </Routes> 
+             
               
               
             </div>
