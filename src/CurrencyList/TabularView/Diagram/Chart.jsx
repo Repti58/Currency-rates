@@ -11,23 +11,7 @@ const Chart = (props) => {
   
   // const selectedDate = props.selectedDate;
   const currentDate = new Date().toLocaleDateString('en-GB').replaceAll("/", ".")
-  setTimeout(() => {
-    const diagram = document.querySelector(".diagram");
-    const datePickerMonthSelect = document.querySelector(
-      ".date-picker-container"
-    );
-
-    datePickerMonthSelect.addEventListener("focusin", function () {
-      if (diagram) {
-        diagram.classList.add("diagram_back-line");
-      }
-    });
-    if (diagram) {
-      datePickerMonthSelect.addEventListener("focusout", function () {
-        diagram.classList.remove("diagram_back-line");
-      });
-    }
-  }, 0);
+ 
 
   console.log(useParams());
   const { currencyCode } = useParams();
@@ -44,8 +28,8 @@ const Chart = (props) => {
     try {
       await axios
         .get(
-          // `http://localhost:3003/ratesDynamic?dateStart=${startDate}&dateEnd=${currentDate}&currencyName=${currencyCode}`
-          `https://currency-rates-backend.vercel.app/ratesDynamic?dateStart=${startDate}&dateEnd=${currentDate}&currencyName=${currencyCode}`
+          `http://localhost:3003/ratesDynamic?dateStart=${startDate}&dateEnd=${currentDate}&currencyName=${currencyCode}`
+          // `https://currency-rates-backend.vercel.app/ratesDynamic?dateStart=${startDate}&dateEnd=${currentDate}&currencyName=${currencyCode}`
         )
         .then((response) => {
           diagramData = response.data;

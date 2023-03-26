@@ -33,13 +33,7 @@
   border-radius: 5px;
 } */
 
-.react-datepicker__input-container input {
-  padding-left: 40px;
-  border: solid grey 1px;
-  border-radius: 5px;
-  /* background-color: #ffffff; */
-  background: url("../public/svg/calendar3.svg") no-repeat #ffffff 9px 6px;
-}
+
 
 /* .react-datepicker__input-container input ::before {
   background: url("../img/svg/calendar.svg") no-repeat left 2px;;
@@ -55,10 +49,7 @@
   border-bottom: solid #ffffff 1px;
 }
 
-.date-picker {
-  display: inline-block;
-  margin-bottom: 20px;
-}
+
 
 header {
   width: 100%;
@@ -90,6 +81,8 @@ input {
   height: 35px;
   animation: spin 2s linear infinite;
 }
+
+
 
 @keyframes spin {
   0% {
