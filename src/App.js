@@ -4,10 +4,11 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { setCurrencyList, setDate } from "./Redux/currencySlice";
 import TabularView from "./CurrencyList/TabularView/TabularView";
-import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 // import MosaicView from "./CurrencyList/MosaicView/MosaicView";
 import Chart from "./CurrencyList/TabularView/Diagram/Chart";
+import {  setDiagramData,  setDiagramRangeReady,  setSelectedRange, } from "./Redux/currencySlice";
+
 
 function App() {
 debugger
@@ -23,12 +24,13 @@ debugger
   const diagramData = useSelector((state) => state.currencySlice.diagramData);
   const diagramRangeReady = useSelector((state) => state.currencySlice.diagramRangeReady);
   const selectedRange = useSelector((state) => state.currencySlice.selectedRange);
+  
   //Получаем данные из Store>>>
 
   let ratesData = [];
 
 
-  //Получаем от Бэкэнда данные по валютам на выбранную дату<<<
+  //Получаем от Бэкэнда данные по валютам на выбранную дату и сохраняем в Store<<<
   const getCurrencyList = async () => {
     debugger
     try {
@@ -45,9 +47,32 @@ debugger
         });
     } catch(e) {alert('Ошибка ' + e.name + ":" + e.message + "\n" + e.stack)}
   };
-  //Получаем от Бэкэнда данные по валютам на выбранную дату>>>
+  //Получаем от Бэкэнда данные по валютам на выбранную дату и сохраняем в Store>>>
 
 
+
+  
+  //Получаем от Бэкэнда данные для Chart и сохраняем в Store<<<
+  const getDiagramData = async (startDate, currencyCode, currencyTicker) => {
+    let diagramData;    
+    const currentDate = new Date().toLocaleDateString('en-GB').replaceAll("/", ".")
+    // startDate = startDate ? startDate : "15.01.2023"
+    try {
+      await axios
+        .get(
+          `http://localhost:3003/ratesDynamic?dateStart=${startDate}&dateEnd=${currentDate}&currencyName=${currencyCode}`
+          // `https://currency-rates-backend.vercel.app/ratesDynamic?dateStart=${startDate}&dateEnd=${currentDate}&currencyName=${currencyCode}`
+        )
+        .then((response) => {
+          diagramData = response.data;
+          diagramData.unshift(["date", currencyTicker]);
+        });
+    } catch {}
+
+    dispatch(setDiagramData(diagramData));
+    dispatch(setDiagramRangeReady(true));
+  };
+  //Получаем от Бэкэнда данные для Chart и сохраняем в Store>>>
 
 
   useEffect(() => {
@@ -61,31 +86,10 @@ debugger
 
           <div className="title">
             <p>Официальные курсы валют к рублю по данным центробанка РФ</p>
-          </div>
-
-          {/* Клендарь<<< */}
-          {/* <span className="date-picker">
-            <div className="date-picker-container">
-              <DatePicker
-                closeOnScroll={true}
-                value={selectedDate}
-                onChange={(date) => {
-                  selectDate(date);
-                }}
-                peekNextMonth
-                showMonthDropdown
-                showYearDropdown
-                dropdownMode="select"
-                disabledKeyboardNavigation
-                withPortal
-                // disabled
-              />          
-            </div>
-          </span> */}
-          {/* Клендарь>>> */} 
+          </div>         
 
           {/* Навигация<<< */}
-          {/* <span className="view-buttons">
+          <span className="view-buttons">
             <Link to="/tabular-view">
               <button type="button" className="btn btn-primary btn-sm">
                 <svg
@@ -114,7 +118,7 @@ debugger
                 </svg>
               </button>
             </Link>
-          </span> */}
+          </span>
           {/* Навигация>>> */}
 
         </div>        
@@ -138,6 +142,8 @@ debugger
                   dispatch={dispatch}
                   setDate={setDate}
                   selectedDateRequest={selectedDateRequest}
+                  
+
                 />
               }
             />
@@ -159,11 +165,13 @@ debugger
               element={
                 <Chart
                   diagramData={diagramData}
-                  currencyDate={responseDate}
-                  currencyItems={currencyItems}
-                  selectedDate={selectedDate}
                   diagramRangeReady={diagramRangeReady}
                   selectedRange={selectedRange}
+                  getDiagramData={getDiagramData}
+                  dispatch={dispatch}
+                  setDiagramData={setDiagramData}
+                  setDiagramRangeReady={setDiagramRangeReady}
+                  setSelectedRange={setSelectedRange}
                 />
               }
             />
