@@ -1,7 +1,6 @@
-import axios from "axios"
 import { useEffect } from "react"
 import { Chart as Charts } from "react-google-charts"
-import { useParams } from "react-router-dom"
+import { Link, useParams } from "react-router-dom"
 import "./Chart.css"
 
 const Chart = ({
@@ -13,6 +12,7 @@ const Chart = ({
     setDiagramData,
     setDiagramRangeReady,
     setSelectedRange,
+    currencyItems,
 }) => {
     const { currencyCode } = useParams()
     const { currencyTicker } = useParams()
@@ -48,7 +48,8 @@ const Chart = ({
             getDiagramData(getRange(), currencyCode, currencyTicker)
         },
         [
-            // selectedDate
+
+            diagramData
         ]
     )
 
@@ -83,16 +84,21 @@ const Chart = ({
                     )
                 })}
             </div>
+            <select className="selectCurrency">
+                {currencyItems.map((i) => {
+                    return <option value={i.currencyName}>
+                      <Link to="123">
+                      {i.currencyName}
+                      </Link>
+                      
+                      </option>
+                })}
+            </select>
             <div>
                 {function () {
                     return !diagramRangeReady ? <div className="loader"></div> : null
                 }}
             </div>
-            {/* <select>
-                <option value="1">1</option>
-                <option value="2">2</option>
-                <option value="3">3</option>
-            </select> */}
             <div className="diagram">
                 <Charts
                     // chartType="SteppedAreaChart"

@@ -172,6 +172,7 @@ function App() {
                   setDiagramData={setDiagramData}
                   setDiagramRangeReady={setDiagramRangeReady}
                   setSelectedRange={setSelectedRange}
+                  currencyItems={currencyItems}
                 />
               }
             />
