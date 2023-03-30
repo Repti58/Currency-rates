@@ -8,6 +8,7 @@ import "react-datepicker/dist/react-datepicker.css";
 // import MosaicView from "./CurrencyList/MosaicView/MosaicView";
 import Chart from "./CurrencyList/TabularView/Diagram/Chart";
 import {  setDiagramData,  setDiagramRangeReady,  setSelectedRange, } from "./Redux/currencySlice";
+import ChartContainer from "./CurrencyList/TabularView/Diagram/ChartContainer";
 
 
 function App() {
@@ -21,9 +22,8 @@ function App() {
   const responseDate = useSelector((state) => state.currencySlice.currency[0].currencyDate);
   const responsePrevDate = useSelector((state) => state.currencySlice.currency[0].prevCurrencyDate);
   const selectedDateRequest = useSelector((state) => state.currencySlice.currency[2].selectedDateRequest);
-  const diagramData = useSelector((state) => state.currencySlice.diagramData);
-  const diagramRangeReady = useSelector((state) => state.currencySlice.diagramRangeReady);
-  const selectedRange = useSelector((state) => state.currencySlice.selectedRange);
+  
+  
   
   //Получаем данные из Store>>>
 
@@ -52,27 +52,27 @@ function App() {
 
 
   
-  //Получаем от Бэкэнда данные для Chart и сохраняем в Store<<<
-  const getDiagramData = async (startDate, currencyCode, currencyTicker) => {
-    let diagramData;    
-    const currentDate = new Date().toLocaleDateString('en-GB').replaceAll("/", ".")
-    // startDate = startDate ? startDate : "15.01.2023"
-    try {
-      await axios
-        .get(
-          `http://localhost:3003/ratesDynamic?dateStart=${startDate}&dateEnd=${currentDate}&currencyName=${currencyCode}`
-          // `https://currency-rates-backend.vercel.app/ratesDynamic?dateStart=${startDate}&dateEnd=${currentDate}&currencyName=${currencyCode}`
-        )
-        .then((response) => {
-          diagramData = response.data;
-          diagramData.unshift(["date", currencyTicker]);
-        });
-    } catch {}
+  // //Получаем от Бэкэнда данные для Chart и сохраняем в Store<<<
+  // const getDiagramData = async (startDate, currencyCode, currencyTicker) => {
+  //   let diagramData;    
+  //   const currentDate = new Date().toLocaleDateString('en-GB').replaceAll("/", ".")
+  //   // startDate = startDate ? startDate : "15.01.2023"
+  //   try {
+  //     await axios
+  //       .get(
+  //         `http://localhost:3003/ratesDynamic?dateStart=${startDate}&dateEnd=${currentDate}&currencyName=${currencyCode}`
+  //         // `https://currency-rates-backend.vercel.app/ratesDynamic?dateStart=${startDate}&dateEnd=${currentDate}&currencyName=${currencyCode}`
+  //       )
+  //       .then((response) => {
+  //         diagramData = response.data;
+  //         diagramData.unshift(["date", currencyTicker]);
+  //       });
+  //   } catch {}
 
-    dispatch(setDiagramData(diagramData));
-    dispatch(setDiagramRangeReady(true));
-  };
-  //Получаем от Бэкэнда данные для Chart и сохраняем в Store>>>
+  //   dispatch(setDiagramData(diagramData));
+  //   dispatch(setDiagramRangeReady(true));
+  // };
+  // //Получаем от Бэкэнда данные для Chart и сохраняем в Store>>>
 
 
   useEffect(() => {
@@ -163,15 +163,9 @@ function App() {
               path={"/Chart/:currencyCode/:currencyTicker/:currencyName"}
               // path="/AUD"
               element={
-                <Chart
-                  diagramData={diagramData}
-                  diagramRangeReady={diagramRangeReady}
-                  selectedRange={selectedRange}
-                  getDiagramData={getDiagramData}
+                <ChartContainer
+                  // getDiagramData={getDiagramData}
                   dispatch={dispatch}
-                  setDiagramData={setDiagramData}
-                  setDiagramRangeReady={setDiagramRangeReady}
-                  setSelectedRange={setSelectedRange}
                   currencyItems={currencyItems}
                 />
               }
