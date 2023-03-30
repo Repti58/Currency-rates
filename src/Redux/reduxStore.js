@@ -1,13 +1,14 @@
 import { configureStore } from "@reduxjs/toolkit";
-import { combineReducers, legacy_createStore } from "redux";
 import currencySlice from "./currencySlice";
+import chartSlice from "./chartSlice";
 
 const store = configureStore({
   reducer: {
     currencySlice,
+    chartSlice,
   },
 });
 
-window.store = store;
+window.Storage = store;
 
 export default store;

@@ -6,8 +6,6 @@ import { setCurrencyList, setDate } from "./Redux/currencySlice";
 import TabularView from "./CurrencyList/TabularView/TabularView";
 import "react-datepicker/dist/react-datepicker.css";
 // import MosaicView from "./CurrencyList/MosaicView/MosaicView";
-import Chart from "./CurrencyList/TabularView/Diagram/Chart";
-import {  setDiagramData,  setDiagramRangeReady,  setSelectedRange, } from "./Redux/currencySlice";
 import ChartContainer from "./CurrencyList/TabularView/Diagram/ChartContainer";
 
 

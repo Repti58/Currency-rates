@@ -2,7 +2,7 @@ import axios from "axios"
 import { useEffect } from "react"
 import { useSelector } from "react-redux"
 import { Link, useParams } from "react-router-dom"
-import { setDiagramData, setDiagramRangeReady, setSelectedRange } from "../../../Redux/currencySlice"
+import { setDiagramData, setDiagramRangeReady, setSelectedRange } from "../../../Redux/chartSlice"
 import Chart from "./Chart"
 import "./Chart.css"
 
@@ -11,9 +11,9 @@ const ChartContainer = ({ dispatch, currencyItems }) => {
     const { currencyCode } = useParams()
     const { currencyTicker } = useParams()
     const { currencyName } = useParams()
-    const diagramData = useSelector((state) => state.currencySlice.diagramData)
-    const diagramRangeReady = useSelector((state) => state.currencySlice.diagramRangeReady)
-    const selectedRange = useSelector((state) => state.currencySlice.selectedRange)
+    const diagramData = useSelector((state) => state.chartSlice.diagramData)
+    const diagramRangeReady = useSelector((state) => state.chartSlice.diagramRangeReady)
+    const selectedRange = useSelector((state) => state.chartSlice.selectedRange)
 
     //Получаем от Бэкэнда данные для Chart и сохраняем в Store<<<
     const getDiagramData = async (startDate, currencyCode, currencyTicker) => {
