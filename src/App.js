@@ -11,7 +11,7 @@ import {  setDiagramData,  setDiagramRangeReady,  setSelectedRange, } from "./Re
 
 
 function App() {
-debugger
+
   const axios = require("axios").default;
   const dispatch = useDispatch();
 
@@ -32,7 +32,7 @@ debugger
 
   //Получаем от Бэкэнда данные по валютам на выбранную дату и сохраняем в Store<<<
   const getCurrencyList = async () => {
-    debugger
+    
     try {
       await axios
         .get(
