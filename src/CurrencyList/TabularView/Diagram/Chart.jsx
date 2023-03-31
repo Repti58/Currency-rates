@@ -12,7 +12,14 @@ const Chart = (props) => {
                 width="100%"
                 height="400px"
             />
-            : null}
+            : 
+            <div class="lds-ellipsis">
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                        <div></div>
+                    </div>
+            }
         </div>
     )
 }

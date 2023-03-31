@@ -7,7 +7,6 @@ import Chart from "./Chart"
 import "./Chart.css"
 
 const ChartContainer = ({ dispatch, currencyItems }) => {
-    
     const { currencyCode } = useParams()
     const { currencyTicker } = useParams()
     const { currencyName } = useParams()
@@ -18,9 +17,6 @@ const ChartContainer = ({ dispatch, currencyItems }) => {
 
     //Получаем от Бэкэнда данные для Chart и сохраняем в Store<<<
     const getDiagramData = async (startDate) => {
-        
-        
-
         if (!requestedCurrency[0]) {
             setRequestedCurrency([currencyItems[0][2], currencyItems[0][1], currencyItems[0][3]])
         }
@@ -45,7 +41,6 @@ const ChartContainer = ({ dispatch, currencyItems }) => {
     //Получаем от Бэкэнда данные для Chart и сохраняем в Store>>>
 
     const getStartDate = (range = selectedRange) => {
-        
         dispatch(setDiagramRangeReady(false))
         const date = new Date()
         switch (range) {
@@ -69,7 +64,6 @@ const ChartContainer = ({ dispatch, currencyItems }) => {
     }
 
     useEffect(() => {
-        
         setDiagramData()
         getDiagramData(getStartDate())
     }, [])
@@ -83,22 +77,21 @@ const ChartContainer = ({ dispatch, currencyItems }) => {
     ]
 
     return (
-    // !diagramData ? (
+        // !diagramData ? (
         //  || diagramData[0][1] !== currencyTicker
-    //     <div class="lds-ellipsis">
-    //                     <div></div>
-    //                     <div></div>
-    //                     <div></div>
-    //                     <div></div>
-    //                 </div>
-    // ) : (
+        //     <div class="lds-ellipsis">
+        //                     <div></div>
+        //                     <div></div>
+        //                     <div></div>
+        //                     <div></div>
+        //                 </div>
+        // ) : (
         <div>
             <div className="currency-name">
                 {requestedCurrency[2]}. Текущий курс - {diagramData ? diagramData[diagramData.length - 1][1] : null}
             </div>
             <div className="range">
                 {rangeButtons.map((i) => {
-                    
                     return (
                         <button
                             className={selectedRange === i[0] ? "rangeName selectedRange" : "rangeName"}
@@ -129,15 +122,11 @@ const ChartContainer = ({ dispatch, currencyItems }) => {
                         <div></div>
                         <div></div>
                     </div>
-                ) : 
-                (null
-                )
-                }
+                ) : null}
             </div>
-                <div>
-                <Chart diagramData={diagramData} />
-                </div>
-            
+            <div>
+                <Chart diagramData={diagramData}/>
+            </div>
         </div>
     )
 }
