@@ -40,52 +40,47 @@ const ChartContainer = ({ dispatch, currencyItems }) => {
     }
     //Получаем от Бэкэнда данные для Chart и сохраняем в Store>>>
 
+    //Вычисляем начальную дату для запроса динамики курса<<<
     const getStartDate = (range = selectedRange) => {
         dispatch(setDiagramRangeReady(false))
         const date = new Date()
         switch (range) {
-            case "month":
+            case "1M":
                 date.setMonth(date.getMonth() - 1)
                 break
-            case "three-month":
+            case "3M":
                 date.setMonth(date.getMonth() - 3)
                 break
-            case "six-month":
+            case "6M":
                 date.setMonth(date.getMonth() - 6)
                 break
-            case "year":
+            case "1Г":
                 date.setFullYear(date.getFullYear() - 1)
                 break
-            case "three-years":
+            case "3Г":
                 date.setFullYear(date.getFullYear() - 3)
                 break
         }
         return date.toLocaleDateString("en-GB").replaceAll("/", ".")
     }
+    //Вычисляем начальную дату для запроса динамики курса>>>
 
     useEffect(() => {
         setDiagramData()
         getDiagramData(getStartDate())
     }, [])
 
-    const rangeButtons = [
-        ["three-years", "3Г"],
-        ["year", "1Г"],
-        ["six-month", "6М"],
-        ["three-month", "3М"],
-        ["month", "1М"],
-    ]
-
+    const rangeButtons = ["3Г", "1Г", "6M", "3M", "1M"]
+    const SetSelect = (value) => {
+        debugger
+        const selectCurrencyItem = currencyItems.find(({id}) => id === value)
+        // const valueTest = JSON.stringify(value)
+        console.log(selectCurrencyItem);
+        dispatch(setDiagramData(null))
+        dispatch(setRequestedCurrency([selectCurrencyItem.currencyCode, selectCurrencyItem.currencyTicker, selectCurrencyItem.currencyName]))
+        getDiagramData(getStartDate())
+    }
     return (
-        // !diagramData ? (
-        //  || diagramData[0][1] !== currencyTicker
-        //     <div class="lds-ellipsis">
-        //                     <div></div>
-        //                     <div></div>
-        //                     <div></div>
-        //                     <div></div>
-        //                 </div>
-        // ) : (
         <div>
             <div className="currency-name">
                 {requestedCurrency[2]}. Текущий курс - {diagramData ? diagramData[diagramData.length - 1][1] : null}
@@ -94,24 +89,25 @@ const ChartContainer = ({ dispatch, currencyItems }) => {
                 {rangeButtons.map((i) => {
                     return (
                         <button
-                            className={selectedRange === i[0] ? "rangeName selectedRange" : "rangeName"}
+                            className={selectedRange === i ? "rangeName selectedRange" : "rangeName"}
                             onClick={() => {
-                                dispatch(setSelectedRange(i[0]))
-                                getDiagramData(getStartDate(i[0]))
+                                dispatch(setSelectedRange(i))
+                                getDiagramData(getStartDate(i))
                             }}
                         >
-                            {i[1]}
+                            {i}
                         </button>
                     )
                 })}
             </div>
-            <select className="selectCurrency">
+            <select className="selectCurrency" onChange={(e) => {
+                debugger 
+                SetSelect(e.target.value)}}>
+                    <option value="startMessage">Выберите валюту</option>
                 {currencyItems.map((i) => {
-                    return (
-                        <option value={i.currencyName}>
-                            <Link to="123">{i.currencyName}</Link>
-                        </option>
-                    )
+                    // debugger
+                    console.log(i);
+                    return <option value={i.id}>{i.currencyName}</option>
                 })}
             </select>
             <div>
@@ -125,7 +121,7 @@ const ChartContainer = ({ dispatch, currencyItems }) => {
                 ) : null}
             </div>
             <div>
-                <Chart diagramData={diagramData}/>
+                <Chart diagramData={diagramData} />
             </div>
         </div>
     )

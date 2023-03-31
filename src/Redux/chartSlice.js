@@ -5,7 +5,7 @@ const chartSlice = createSlice({
     initialState: {
         diagramData: undefined,
         diagramRangeReady: true,
-        selectedRange: "month",
+        selectedRange: "1M",
         requestedCurrency: ["R01235", "USD", "Доллар США"]
     },
 
