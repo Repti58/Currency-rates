@@ -1,9 +1,10 @@
 import { Chart as Charts } from "react-google-charts"
 
 const Chart = (props) => {
-    debugger
+    
     return (
         <div className="diagram">
+          {props.diagramData ? 
             <Charts
                 // chartType="SteppedAreaChart"
                 chartType="LineChart"
@@ -11,6 +12,7 @@ const Chart = (props) => {
                 width="100%"
                 height="400px"
             />
+            : null}
         </div>
     )
 }

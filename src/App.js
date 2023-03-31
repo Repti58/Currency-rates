@@ -158,7 +158,7 @@ function App() {
             /> */}
 
             <Route
-              path={"/Chart/:currencyCode/:currencyTicker/:currencyName"}
+              path={"/Chart"}
               // path="/AUD"
               element={
                 <ChartContainer
