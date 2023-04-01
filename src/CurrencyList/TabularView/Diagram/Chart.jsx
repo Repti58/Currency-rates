@@ -1,24 +1,30 @@
 import { Chart as Charts } from "react-google-charts"
 
-const Chart = (props) => {
+const Chart = ({
+  diagramData,
+  requestedCurrency,
+}) => {
     
     return (
         <div className="diagram">
-          {props.diagramData ? 
+          <div className="currency-name">
+                {requestedCurrency[2]}. Текущий курс - {diagramData ? diagramData[diagramData.length - 1][1] : null}
+            </div>
+          {diagramData ? 
             <Charts
                 // chartType="SteppedAreaChart"
                 chartType="LineChart"
-                data={props.diagramData}
+                data={diagramData}
                 width="100%"
                 height="400px"
             />
-            : 
-            <div class="lds-ellipsis">
-                        <div></div>
-                        <div></div>
-                        <div></div>
-                        <div></div>
-                    </div>
+            : null
+            // <div class="lds-ellipsis">
+            //             <div></div>
+            //             <div></div>
+            //             <div></div>
+            //             <div></div>
+            //         </div>
             }
         </div>
     )

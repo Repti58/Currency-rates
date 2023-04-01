@@ -10,7 +10,7 @@
   border-top: solid rgb(131, 131, 131) 2px;
 }
 
-.btn-primary {
+/* .btn-primary {
   color: rgb(66, 66, 66);
   border: none;
   --bs-btn-bg: rgb(233, 233, 233);
@@ -18,7 +18,7 @@
   --bs-btn-hover-color: rgb(66, 66, 66);
   --bs-btn-active-bg: rgb(233, 233, 233);
   margin: 2px;
-}
+} */
 
 .view-buttons {
   float: right;
@@ -68,9 +68,9 @@ header {
   top: -80px;
 }
 
-input {
+/* input {
   height: 30px;
-}
+} */
 
 .loader {
   margin-top: 10px;
