@@ -20,19 +20,9 @@
     margin-bottom: 5px;
 }
 
-/* .selectCurrency {
+.selectCurrency {
     display: inline-block;
     margin-left: 3%;
-
-} */
-
-.btn {
-    background-color: #dee2e6;
-    margin-right: 5px;
-}
-
-.btn :hover {
-    background-color: red;
 }
 
 .rangeName {
@@ -46,36 +36,8 @@
     cursor: pointer;
 }
 
-span {
-    display: inline-block;
-}
-
-.form-select {
-    width: 500px;
-    
-     box-shadow: none !important;
-}
-
-.input-group{
-    margin-right: 20px;
-    /* display: inline-block;
-    position: relative; */
-
-}
-
-:root {
-    --form-select-transition: none;
-    --bs-input-focus-border-color: red;
-}
-.mb-3 {
-    margin-right: 20px;
-    padding-right: 20px;
-
-}
-
 .selectedRange {
-    /* border: solid rgb(83, 83, 83) 2px; */
-    background-color: #c6c6c6;
+    border: solid rgb(83, 83, 83) 2px;
 }
 
 /* Loader<<< */

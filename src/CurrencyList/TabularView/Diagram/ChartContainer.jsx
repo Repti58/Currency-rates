@@ -73,69 +73,43 @@ const ChartContainer = ({ dispatch, currencyItems }) => {
     const rangeButtons = ["3Г", "1Г", "6M", "3M", "1M"]
     const SetSelect = (value) => {
         debugger
-        const selectCurrencyItem = currencyItems.find(({ id }) => id === value)
+        const selectCurrencyItem = currencyItems.find(({id}) => id === value)
         // const valueTest = JSON.stringify(value)
-        console.log(selectCurrencyItem)
+        console.log(selectCurrencyItem);
         dispatch(setDiagramData(null))
-        dispatch(
-            setRequestedCurrency([
-                selectCurrencyItem.currencyCode,
-                selectCurrencyItem.currencyTicker,
-                selectCurrencyItem.currencyName,
-            ])
-        )
+        dispatch(setRequestedCurrency([selectCurrencyItem.currencyCode, selectCurrencyItem.currencyTicker, selectCurrencyItem.currencyName]))
         getDiagramData(getStartDate())
     }
     return (
         <div>
-            {/* <div className="currency-name">
+            <div className="currency-name">
                 {requestedCurrency[2]}. Текущий курс - {diagramData ? diagramData[diagramData.length - 1][1] : null}
-            </div> */}
-            <span>
-                <div class="input-group mb-3" role="group" aria-label="Basic example">
-                    {rangeButtons.map((i) => {
-                        return (
-                            <button
-                                type="button"
-                                className={selectedRange === i ? "btn selectedRange" : "btn"}
-                                onClick={() => {
-                                    dispatch(setSelectedRange(i))
-                                    getDiagramData(getStartDate(i))
-                                }}
-                            >
-                                {i}
-                            </button>
-                        )
-                    })}
-                </div>
-            </span>
-            <span>
-                <select className="form-select" aria-label="Default select example" onChange={(e) => {
-                    debugger
-                    SetSelect(e.target.value)
-                }}>
-                    <option selected>Выберите валюту</option>
-                    {currencyItems.map((i) => {
-                    // debugger
-                    console.log(i)
-                    return <option value={i.id}>{i.currencyName}</option>
+            </div>
+            <div className="range">
+                {rangeButtons.map((i) => {
+                    return (
+                        <button
+                            className={selectedRange === i ? "rangeName selectedRange" : "rangeName"}
+                            onClick={() => {
+                                dispatch(setSelectedRange(i))
+                                getDiagramData(getStartDate(i))
+                            }}
+                        >
+                            {i}
+                        </button>
+                    )
                 })}
-                </select>
-            </span>
-            {/* <select
-                className="selectCurrency"
-                onChange={(e) => {
-                    debugger
-                    SetSelect(e.target.value)
-                }}
-            >
-                <option value="startMessage">Выберите валюту</option>
+            </div>
+            <select className="selectCurrency" onChange={(e) => {
+                debugger 
+                SetSelect(e.target.value)}}>
+                    <option value="startMessage">Выберите валюту</option>
                 {currencyItems.map((i) => {
                     // debugger
-                    console.log(i)
+                    console.log(i);
                     return <option value={i.id}>{i.currencyName}</option>
                 })}
-            </select> */}
+            </select>
             <div>
                 {!diagramRangeReady ? (
                     <div class="lds-ellipsis">
@@ -147,7 +121,7 @@ const ChartContainer = ({ dispatch, currencyItems }) => {
                 ) : null}
             </div>
             <div>
-                <Chart diagramData={diagramData} requestedCurrency={requestedCurrency} />
+                <Chart diagramData={diagramData} />
             </div>
         </div>
     )
