@@ -32,8 +32,8 @@ const ChartContainer = ({ dispatch, currencyItems }) => {
         try {
             await axios
                 .get(
-                    `http://localhost:3003/ratesDynamic?dateStart=${startDate}&dateEnd=${currentDate}&currencyName=${currencyCode}`
-                    // `https://currency-rates-backend.vercel.app/ratesDynamic?dateStart=${startDate}&dateEnd=${currentDate}&currencyName=${currencyCode}`
+                    // `http://localhost:3003/ratesDynamic?dateStart=${startDate}&dateEnd=${currentDate}&currencyName=${currencyCode}`
+                    `https://currency-rates-backend.vercel.app/ratesDynamic?dateStart=${startDate}&dateEnd=${currentDate}&currencyName=${currencyCode}`
                 )
                 .then((response) => {
                     diagramData = response.data
@@ -132,10 +132,8 @@ const ChartContainer = ({ dispatch, currencyItems }) => {
                                 SetSelect(e.target.value)
                             }}
                         >
-                            <option selected>Выберите валюту</option>
+                            <option value="default">Выберите валюту</option>
                             {currencyItems.map((i) => {
-                                // debugger
-                                console.log(i)
                                 return <option value={i.id}>{i.currencyName}</option>
                             })}
                         </select>

@@ -34,13 +34,12 @@ function App() {
     try {
       await axios
         .get(
-          // `https://currency-rates-backend.vercel.app/api?date=${selectedDate}`
-          `http://localhost:3003/api?date=${selectedDate}`
+          `https://currency-rates-backend.vercel.app/api?date=${selectedDate}`
+          // `http://localhost:3003/api?date=${selectedDate}`
         )
         .then((response) => {
           ratesData = response.data;
           ratesData.push({selectedDateRequest: selectedDate});
-          console.log(ratesData);
           dispatch(setCurrencyList(ratesData));
         });
     } catch(e) {alert('Ошибка ' + e.name + ":" + e.message + "\n" + e.stack)}
@@ -171,7 +170,7 @@ function App() {
           </Routes>
        
       </div>
-      <footer className="footer">Курсы валют по даным центробанка РФ</footer>
+      {/* <footer className="footer">Курсы валют по даным центробанка РФ</footer> */}
     </div>
   );
 }

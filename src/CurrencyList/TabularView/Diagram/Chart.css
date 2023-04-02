@@ -1,9 +1,32 @@
-.currency-name {
+.currency-title {
     /* width: 0; */
     text-align: center;
     padding-top: 30px;
     /* background-color: blue; */
-    margin: 0, auto;
+    margin: 0 auto;
+    /* margin-bottom: 20px; */
+    font-weight: 500;
+    color: rgb(89, 89, 89);
+}
+
+.currency-title__title {
+  font-weight: 600;
+  font-size: large;  
+}
+
+.currency-title__price {
+  padding: 3px;
+  /* border: solid black 1px; */
+  /* background-color: #d2e5ff; */
+  /* border-radius: 10%; */
+  font-weight: 600;
+  font-size: large;    
+}
+.currency-title__price_up {  
+  color: rgb(173, 0, 0);
+}
+.currency-title__price_down {  
+  color: green;
 }
 
 .diagram {
@@ -74,7 +97,7 @@
   --bs-btn-hover-bg: rgb(209, 209, 209);
   --bs-btn-active-bg: rgb(189, 189, 189);
   --bs-btn-active-border-color: rgb(189, 189, 189);
-  --bs-btn-link-hover-color: rgba(255, 255, 255, 0);
+  /* --bs-btn-link-hover-color: rgba(255, 255, 255, 0); */
 }
 
 .selectedRange {
@@ -100,7 +123,7 @@
     width: 13px;
     height: 13px;
     border-radius: 15%;
-    background: #177bff;
+    background: #00449c;
     animation-timing-function: step-end(0, 1, 1, 0);
   }
   .lds-ellipsis div:nth-child(1) {
