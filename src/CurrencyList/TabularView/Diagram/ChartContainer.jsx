@@ -16,7 +16,11 @@ const ChartContainer = ({ dispatch, currencyItems }) => {
     const requestedCurrency = useSelector((state) => state.chartSlice.requestedCurrency)
 
     //Получаем от Бэкэнда данные для Chart и сохраняем в Store<<<
-    const getDiagramData = async (startDate, currencyCode = requestedCurrency[0], currencyTicker = requestedCurrency[1]) => {
+    const getDiagramData = async (
+        startDate,
+        currencyCode = requestedCurrency[0],
+        currencyTicker = requestedCurrency[1]
+    ) => {
         debugger
         if (!requestedCurrency[0]) {
             setRequestedCurrency([currencyItems[0][2], currencyItems[0][1], currencyItems[0][3]])
@@ -74,42 +78,57 @@ const ChartContainer = ({ dispatch, currencyItems }) => {
     const rangeButtons = ["3Г", "1Г", "6M", "3M", "1M"]
     const SetSelect = (value) => {
         debugger
-        const selectCurrencyItem = currencyItems.find(({id}) => id === value)
-        const currencyCode = selectCurrencyItem.currencyCode;
-        const currencyTicker = selectCurrencyItem.currencyTicker;
-        const currencyName = selectCurrencyItem.currencyName;
-        console.log(selectCurrencyItem);
+        const selectCurrencyItem = currencyItems.find(({ id }) => id === value)
+        const currencyCode = selectCurrencyItem.currencyCode
+        const currencyTicker = selectCurrencyItem.currencyTicker
+        const currencyName = selectCurrencyItem.currencyName
+        console.log(selectCurrencyItem)
         dispatch(setDiagramData(null))
         dispatch(setRequestedCurrency([currencyCode, currencyTicker, currencyName]))
         getDiagramData(getStartDate(), currencyCode, currencyTicker)
     }
     return (
-        <div>           
-            <div className="range">
-                {rangeButtons.map((i) => {
-                    return (
-                        <button
-                            className={selectedRange === i ? "rangeName selectedRange" : "rangeName"}
-                            onClick={() => {
-                                dispatch(setSelectedRange(i))
-                                getDiagramData(getStartDate(i))
-                            }}
-                        >
-                            {i}
-                        </button>
-                    )
-                })}
+        <div>
+            <div className="control">
+            <span className="select-container">
+                    <select
+                        class="form-select"
+                        aria-label="Default select example"
+                        onChange={(e) => {
+                            debugger
+                            SetSelect(e.target.value)
+                        }}
+                    >
+                        <option selected>Выберите валюту</option>
+                        {currencyItems.map((i) => {
+                            // debugger
+                            console.log(i)
+                            return <option value={i.id}>{i.currencyName}</option>
+                        })}
+                    </select>
+                </span>
+                <span className="range-container">
+                    
+                        {rangeButtons.map((i) => {
+                            return (
+                                // <button type="button" class="btn btn-secondary">Secondary</button>
+                                <button
+                                    type="button"
+                                    className={selectedRange === i ? "btn selectedRange" : "btn"}
+                                    onClick={() => {
+                                        dispatch(setSelectedRange(i))
+                                        getDiagramData(getStartDate(i))
+                                    }}
+                                >
+                                    {i}
+                                </button>
+                            )
+                        })}
+                    
+                </span>
+                
             </div>
-            <select className="selectCurrency" onChange={(e) => {
-                debugger 
-                SetSelect(e.target.value)}}>
-                    <option value="startMessage">Выберите валюту</option>
-                {currencyItems.map((i) => {
-                    // debugger
-                    console.log(i);
-                    return <option value={i.id}>{i.currencyName}</option>
-                })}
-            </select>
+            
             <div>
                 {!diagramRangeReady ? (
                     <div class="lds-ellipsis">

@@ -15,30 +15,63 @@
     z-index: -100;
 }
 
-.range {
+/* .range {
     display: inline-block;
     margin-bottom: 5px;
-}
+} */
 
 .selectCurrency {
     display: inline-block;
     margin-left: 3%;
 }
 
-.rangeName {
-    display: inline-block;
-    width: 35px;
-    text-align: center;
-    border: 0;
-    border-radius: 6px;
-    margin: 3px 5px;
-    padding: 3px 3px;
-    cursor: pointer;
+
+/* .rangeName {
+  display: inline-block;
+  width: 35px;
+  text-align: center;
+  border: 0;
+  border-radius: 6px;
+  margin: 3px 5px;
+  padding: 3px 3px;
+  cursor: pointer;
+} */
+
+.control {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+}
+
+.select-container {
+  margin-right: 20px;
+  margin-bottom: 20px;
+}
+
+.range-container {
+  display: flex;
+  flex-wrap: nowrap;
+  margin-bottom: 20px;
+}
+
+.btn {
+  width: 40px;
+  padding-left: 0;
+  padding-right: 0;
+  background-color: rgb(232, 232, 232);
+  margin-right: 5px;
+  --bs-btn-hover-bg: rgb(209, 209, 209);
+  --bs-btn-active-bg: rgb(189, 189, 189);
+  --bs-btn-active-border-color: rgb(189, 189, 189);
 }
 
 .selectedRange {
-    border: solid rgb(83, 83, 83) 2px;
+  background-color: rgb(189, 189, 189);
+    /* border: solid rgb(83, 83, 83) 2px; */
 }
+
+
+
 
 /* Loader<<< */
 .lds-ellipsis {
