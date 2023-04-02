@@ -4,7 +4,7 @@ const Chart = (props) => {
     const options = {
         // title: `(${props.requestedCurrency[1]}) ${props.requestedCurrency[2]}`,
         legend: "none",
-        colors: ["#00449c"],
+        colors: ["rgb(78, 99, 137)"],
         lineWidth: 3,
     }
     return (
@@ -25,16 +25,18 @@ const Chart = (props) => {
                     {props.diagramData ? props.diagramData[props.diagramData.length - 1][1] : null}
                 </span>
             </div>
-            {props.diagramData ? (
-                <Charts
-                    // chartType="SteppedAreaChart"
-                    chartType="LineChart"
-                    data={props.diagramData}
-                    width="100%"
-                    height="400px"
-                    options={options}
-                />
-            ) : null}
+            <div className="chart-container">
+                {props.diagramData ? (
+                    <Charts
+                        // chartType="SteppedAreaChart"
+                        chartType="LineChart"
+                        data={props.diagramData}
+                        width="100%"
+                        height="100%"
+                        options={options}
+                    />
+                ) : null}
+            </div>
         </div>
     )
 }

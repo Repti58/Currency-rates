@@ -145,7 +145,7 @@ const ChartContainer = ({ dispatch, currencyItems }) => {
                             // <button type="button" class="btn btn-secondary">Secondary</button>
                             <button
                                 type="button"
-                                className={selectedRange === i ? "btn btn-primary selectedRange" : "btn btn-primary"}
+                                className={selectedRange === i ? "btn btn__range btn-primary selectedRange" : "btn btn__range btn-primary"}
                                 onClick={() => {
                                     dispatch(setSelectedRange(i))
                                     getDiagramData(getStartDate(i))
