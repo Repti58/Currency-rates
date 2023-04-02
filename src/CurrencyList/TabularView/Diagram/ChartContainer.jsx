@@ -78,17 +78,13 @@ const ChartContainer = ({ dispatch, currencyItems }) => {
         const currencyCode = selectCurrencyItem.currencyCode;
         const currencyTicker = selectCurrencyItem.currencyTicker;
         const currencyName = selectCurrencyItem.currencyName;
-        // const valueTest = JSON.stringify(value)
         console.log(selectCurrencyItem);
         dispatch(setDiagramData(null))
         dispatch(setRequestedCurrency([currencyCode, currencyTicker, currencyName]))
         getDiagramData(getStartDate(), currencyCode, currencyTicker)
     }
     return (
-        <div>
-            <div className="currency-name">
-                {requestedCurrency[2]}. Текущий курс - {diagramData ? diagramData[diagramData.length - 1][1] : null}
-            </div>
+        <div>           
             <div className="range">
                 {rangeButtons.map((i) => {
                     return (
@@ -125,7 +121,7 @@ const ChartContainer = ({ dispatch, currencyItems }) => {
                 ) : null}
             </div>
             <div>
-                <Chart diagramData={diagramData} />
+                <Chart diagramData={diagramData} requestedCurrency={requestedCurrency} />
             </div>
         </div>
     )
