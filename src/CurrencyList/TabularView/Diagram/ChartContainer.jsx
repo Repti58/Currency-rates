@@ -90,45 +90,76 @@ const ChartContainer = ({ dispatch, currencyItems }) => {
     return (
         <div>
             <div className="control">
-            <span className="select-container">
-                    <select
-                        class="form-select"
-                        aria-label="Default select example"
-                        onChange={(e) => {
-                            debugger
-                            SetSelect(e.target.value)
-                        }}
-                    >
-                        <option selected>Выберите валюту</option>
-                        {currencyItems.map((i) => {
-                            // debugger
-                            console.log(i)
-                            return <option value={i.id}>{i.currencyName}</option>
-                        })}
-                    </select>
-                </span>
-                <span className="range-container">
-                    
-                        {rangeButtons.map((i) => {
-                            return (
-                                // <button type="button" class="btn btn-secondary">Secondary</button>
-                                <button
-                                    type="button"
-                                    className={selectedRange === i ? "btn selectedRange" : "btn"}
-                                    onClick={() => {
-                                        dispatch(setSelectedRange(i))
-                                        getDiagramData(getStartDate(i))
-                                    }}
+                <div className="subcontrol">
+                    {/* Навигация<<< */}
+                    <span className="gotolist-btn">
+                        <Link to="/tabular-view">
+                            <button type="button" className="btn btn-primary">
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    width="16"
+                                    height="16"
+                                    fill="currentColor"
+                                    class="bi bi-table"
+                                    viewBox="0 0 16 16"
                                 >
-                                    {i}
-                                </button>
-                            )
-                        })}
-                    
+                                    <path d="M0 2a2 2 0 0 1 2-2h12a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H2a2 2 0 0 1-2-2V2zm15 2h-4v3h4V4zm0 4h-4v3h4V8zm0 4h-4v3h3a1 1 0 0 0 1-1v-2zm-5 3v-3H6v3h4zm-5 0v-3H1v2a1 1 0 0 0 1 1h3zm-4-4h4V8H1v3zm0-4h4V4H1v3zm5-3v3h4V4H6zm4 4H6v3h4V8z" />
+                                </svg>
+                            </button>
+                        </Link>
+                        {/* <Link to="Currency-rates/mosaic-view">
+              <button type="button" className="btn btn-primary btn-sm">
+                <svg
+                  xmlns="http://www.w3.org/2000/svg"
+                  width="16"
+                  height="20"
+                  fill="currentColor"
+                  // class="bi bi-grid-fill"
+                  viewBox="0 0 16 16"
+                >
+                  <path d="M1 2.5A1.5 1.5 0 0 1 2.5 1h3A1.5 1.5 0 0 1 7 2.5v3A1.5 1.5 0 0 1 5.5 7h-3A1.5 1.5 0 0 1 1 5.5v-3zm8 0A1.5 1.5 0 0 1 10.5 1h3A1.5 1.5 0 0 1 15 2.5v3A1.5 1.5 0 0 1 13.5 7h-3A1.5 1.5 0 0 1 9 5.5v-3zm-8 8A1.5 1.5 0 0 1 2.5 9h3A1.5 1.5 0 0 1 7 10.5v3A1.5 1.5 0 0 1 5.5 15h-3A1.5 1.5 0 0 1 1 13.5v-3zm8 0A1.5 1.5 0 0 1 10.5 9h3a1.5 1.5 0 0 1 1.5 1.5v3a1.5 1.5 0 0 1-1.5 1.5h-3A1.5 1.5 0 0 1 9 13.5v-3z" />
+                </svg>
+              </button>
+            </Link> */}
+                    </span>
+                    {/* Навигация>>> */}
+                    <span className="select-container">
+                        <select
+                            class="form-select"
+                            aria-label="Default select example"
+                            onChange={(e) => {
+                                debugger
+                                SetSelect(e.target.value)
+                            }}
+                        >
+                            <option selected>Выберите валюту</option>
+                            {currencyItems.map((i) => {
+                                // debugger
+                                console.log(i)
+                                return <option value={i.id}>{i.currencyName}</option>
+                            })}
+                        </select>
+                    </span>
+                </div>
+                <span className="range-container">
+                    {rangeButtons.map((i) => {
+                        return (
+                            // <button type="button" class="btn btn-secondary">Secondary</button>
+                            <button
+                                type="button"
+                                className={selectedRange === i ? "btn btn-primary selectedRange" : "btn btn-primary"}
+                                onClick={() => {
+                                    dispatch(setSelectedRange(i))
+                                    getDiagramData(getStartDate(i))
+                                }}
+                            >
+                                {i}
+                            </button>
+                        )
+                    })}
                 </span>
-                
             </div>
-            
+
             <div>
                 {!diagramRangeReady ? (
                     <div class="lds-ellipsis">

@@ -40,12 +40,23 @@
 .control {
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-around;
+  /* justify-content: space-around; */
+}
+
+.subcontrol {
+  display: flex;
+  justify-content: left;
+}
+
+.gotolist-btn {
+  margin-right: 20px;
 }
 
 .select-container {
+  width: 400px;
   margin-right: 20px;
   margin-bottom: 20px;
+  --bs-border-color: grey;
 }
 
 .range-container {
@@ -55,14 +66,15 @@
 }
 
 .btn {
-  width: 40px;
-  padding-left: 0;
-  padding-right: 0;
+  /* width: 40px; */
+  /* padding-left: 0;
+  padding-right: 0; */
   background-color: rgb(232, 232, 232);
-  margin-right: 5px;
+  /* margin-right: 5px; */
   --bs-btn-hover-bg: rgb(209, 209, 209);
   --bs-btn-active-bg: rgb(189, 189, 189);
   --bs-btn-active-border-color: rgb(189, 189, 189);
+  --bs-btn-link-hover-color: rgba(255, 255, 255, 0);
 }
 
 .selectedRange {
@@ -133,6 +145,43 @@
   }
   /* Loader>>> */
 
-/* .date-picker-disabled {
-    background-color: black;
-} */
+
+  
+  @media screen and (max-width: 992px) {
+    .select-container {
+      width: 350px;
+    }
+    .control {     
+      justify-content: space-around;
+    }
+  }
+  
+  @media screen and (max-width: 768px) {
+    .select-container {
+      width: 200px;
+      margin-right: 10px;
+    }
+    .gotolist-btn {
+      margin-right: 10px;
+    }
+  }
+
+  @media screen and (max-width: 510px) {
+    .select-container {      
+      margin-right: 0;
+    }
+    .gotolist-btn {
+      margin-right: 0;
+    }
+    .subcontrol {
+      width: 260px;
+      justify-content: space-between;
+    }
+    .range-container {
+      width: 260px;
+      justify-content: space-between;
+    }
+    .btn {
+      margin-right: 0;
+    }
+  }
