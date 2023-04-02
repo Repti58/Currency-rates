@@ -16,7 +16,8 @@ const ChartContainer = ({ dispatch, currencyItems }) => {
     const requestedCurrency = useSelector((state) => state.chartSlice.requestedCurrency)
 
     //Получаем от Бэкэнда данные для Chart и сохраняем в Store<<<
-    const getDiagramData = async (startDate) => {
+    const getDiagramData = async (startDate, currencyCode = requestedCurrency[0], currencyTicker = requestedCurrency[1]) => {
+        debugger
         if (!requestedCurrency[0]) {
             setRequestedCurrency([currencyItems[0][2], currencyItems[0][1], currencyItems[0][3]])
         }
@@ -27,12 +28,12 @@ const ChartContainer = ({ dispatch, currencyItems }) => {
         try {
             await axios
                 .get(
-                    `http://localhost:3003/ratesDynamic?dateStart=${startDate}&dateEnd=${currentDate}&currencyName=${requestedCurrency[0]}`
+                    `http://localhost:3003/ratesDynamic?dateStart=${startDate}&dateEnd=${currentDate}&currencyName=${currencyCode}`
                     // `https://currency-rates-backend.vercel.app/ratesDynamic?dateStart=${startDate}&dateEnd=${currentDate}&currencyName=${currencyCode}`
                 )
                 .then((response) => {
                     diagramData = response.data
-                    diagramData.unshift(["date", requestedCurrency[1]])
+                    diagramData.unshift(["date", currencyTicker])
                     dispatch(setDiagramData(diagramData))
                     dispatch(setDiagramRangeReady(true))
                 })
@@ -68,17 +69,20 @@ const ChartContainer = ({ dispatch, currencyItems }) => {
     useEffect(() => {
         setDiagramData()
         getDiagramData(getStartDate())
-    }, [])
+    }, [requestedCurrency])
 
     const rangeButtons = ["3Г", "1Г", "6M", "3M", "1M"]
     const SetSelect = (value) => {
         debugger
         const selectCurrencyItem = currencyItems.find(({id}) => id === value)
+        const currencyCode = selectCurrencyItem.currencyCode;
+        const currencyTicker = selectCurrencyItem.currencyTicker;
+        const currencyName = selectCurrencyItem.currencyName;
         // const valueTest = JSON.stringify(value)
         console.log(selectCurrencyItem);
         dispatch(setDiagramData(null))
-        dispatch(setRequestedCurrency([selectCurrencyItem.currencyCode, selectCurrencyItem.currencyTicker, selectCurrencyItem.currencyName]))
-        getDiagramData(getStartDate())
+        dispatch(setRequestedCurrency([currencyCode, currencyTicker, currencyName]))
+        getDiagramData(getStartDate(), currencyCode, currencyTicker)
     }
     return (
         <div>
