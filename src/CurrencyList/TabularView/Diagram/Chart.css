@@ -4,7 +4,7 @@
     padding-top: 30px;
     /* background-color: blue; */
     margin: 0 auto;
-    /* margin-bottom: 20px; */
+        margin-bottom: 20px;
     font-weight: 500;
     color: rgb(89, 89, 89);
 }
@@ -60,10 +60,12 @@
   cursor: pointer;
 } */
 
+
 .control {
   display: flex;
   flex-wrap: wrap;
-  /* justify-content: space-around; */
+  justify-content: center;
+  /* border: solid red; */
 }
 
 .subcontrol {
@@ -96,26 +98,52 @@
   margin-bottom: 20px;
 }
 
-.btn {
-  /* width: 40px; */
-  /* padding-left: 0;
-  padding-right: 0; */
+.btn { 
   background-color: rgb(232, 232, 232);
-  /* margin-right: 5px; */
-  --bs-btn-hover-bg: rgb(209, 209, 209);
-  --bs-btn-active-bg: rgb(189, 189, 189);
-  --bs-btn-active-border-color: rgb(189, 189, 189);
-  /* --bs-btn-link-hover-color: rgba(255, 255, 255, 0); */
+  --bs-btn-hover-bg: rgb(195, 205, 221);
+  --bs-btn-hover-color: rgb(68, 68, 68);
+  --bs-btn-active-bg: rgb(195, 205, 221);
+  --bs-btn-active-color: rgb(68, 68, 68);
+  --bs-btn-active-border-color: rgb(195, 205, 221);
 }
 
 .selectedRange {
-  background-color: rgb(78, 99, 137);
+  background-color: rgb(195, 205, 221);
     /* border: solid rgb(83, 83, 83) 2px; */
-    color: white;
+    /* color: white; */
 }
 
 .chart-container {
-  height: 400px;
+  padding: auto;
+  /* position: relative; */
+  /* border: solid 1px red; */
+  height: 460px;
+  width: 100%;
+  /* overflow: hidden; */
+  text-align: center;
+  display: flex;
+  justify-content: center;
+
+}
+
+.chart {
+  display: flex;
+  justify-content: center;
+  /* margin: 0 auto; */
+  /* text-align: center; */
+  /* align-items: center; */
+  /* padding-left: 5%; */
+  height: 100%;
+  width: 100%;
+  border: solid 1px green;
+/* position: relative; */
+/* top: 0; */
+/* top: 230px; */
+/* left: 600px; */
+/* transform: translateX(-50%); */
+/* transform: translateY(-50%) scaleX(115%); */
+/* overflow: hidden; */
+
 }
 
 
@@ -136,7 +164,7 @@
     width: 13px;
     height: 13px;
     border-radius: 15%;
-    background: #00449c;
+    background: rgb(78, 99, 137);
     animation-timing-function: step-end(0, 1, 1, 0);
   }
   .lds-ellipsis div:nth-child(1) {
@@ -190,6 +218,12 @@
     .control {     
       justify-content: space-around;
     }
+    /* .chart-container {
+      height: 400px;
+    }
+    .chart {
+      top: 200px;
+    } */
   }
   
   @media screen and (max-width: 768px) {
@@ -200,6 +234,12 @@
     .gotolist-btn {
       margin-right: 10px;
     }
+    /* .chart-container {
+      height: 360px;
+    }
+    .chart {
+      top: 180px;
+    } */
   }
 
   @media screen and (max-width: 510px) {
@@ -221,9 +261,14 @@
     .btn__range {
       margin-right: 0;
       width: 60px;
-      height: 60px;
+      height: 50px;
     }
-    .chart-container {
+    /* .chart-container {
       height: 300px;
     }
+    .chart {
+      padding-left: 40px;
+      top: 150px;
+      transform: translateY(-50%) scaleX(145%);
+    } */
   }

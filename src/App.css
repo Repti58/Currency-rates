@@ -12,11 +12,7 @@
 
 .btn-primary {
   color: rgb(66, 66, 66);
-  border: none;
-  --bs-btn-bg: rgb(233, 233, 233);
-  --bs-btn-hover-bg: rgb(255, 255, 255);
-  --bs-btn-hover-color: rgb(66, 66, 66);
-  --bs-btn-active-bg: rgb(233, 233, 233);
+  border: none;  
   margin: 2px;
 }
 
