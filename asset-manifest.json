@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/Currency-rates/static/css/main.c7daaae2.css",
+    "main.css": "/Currency-rates/static/css/main.f4d6b755.css",
     "main.js": "/Currency-rates/static/js/main.259da018.js",
     "static/js/787.fec58e52.chunk.js": "/Currency-rates/static/js/787.fec58e52.chunk.js",
     "index.html": "/Currency-rates/index.html",
     "static/media/calendar3.svg": "/Currency-rates/static/media/calendar3.09c7ca94ea6245e3fa43.svg",
-    "main.c7daaae2.css.map": "/Currency-rates/static/css/main.c7daaae2.css.map",
+    "main.f4d6b755.css.map": "/Currency-rates/static/css/main.f4d6b755.css.map",
     "main.259da018.js.map": "/Currency-rates/static/js/main.259da018.js.map",
     "787.fec58e52.chunk.js.map": "/Currency-rates/static/js/787.fec58e52.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.c7daaae2.css",
+    "static/css/main.f4d6b755.css",
     "static/js/main.259da018.js"
   ]
 }
