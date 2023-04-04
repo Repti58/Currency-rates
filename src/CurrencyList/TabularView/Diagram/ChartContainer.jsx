@@ -1,15 +1,12 @@
 import axios from "axios"
 import { useEffect } from "react"
 import { useSelector } from "react-redux"
-import { Link, useParams } from "react-router-dom"
+import { Link } from "react-router-dom"
 import { setDiagramData, setDiagramRangeReady, setSelectedRange, setRequestedCurrency } from "../../../Redux/chartSlice"
 import Chart from "./Chart"
 import "./Chart.css"
 
-const ChartContainer = ({ dispatch, currencyItems }) => {
-    const { currencyCode } = useParams()
-    const { currencyTicker } = useParams()
-    const { currencyName } = useParams()
+const ChartContainer = ({ dispatch, currencyItems }) => {    
     const diagramData = useSelector((state) => state.chartSlice.diagramData)
     const diagramRangeReady = useSelector((state) => state.chartSlice.diagramRangeReady)
     const selectedRange = useSelector((state) => state.chartSlice.selectedRange)
@@ -19,16 +16,14 @@ const ChartContainer = ({ dispatch, currencyItems }) => {
     const getDiagramData = async (
         startDate,
         currencyCode = requestedCurrency[0],
-        currencyTicker = requestedCurrency[1]
     ) => {
-        debugger
+        
         if (!requestedCurrency[0]) {
             setRequestedCurrency([currencyItems[0][2], currencyItems[0][1], currencyItems[0][3]])
         }
 
         let diagramData
         const currentDate = new Date().toLocaleDateString("en-GB").replaceAll("/", ".")
-        // startDate = startDate ? startDate : "15.01.2023"
         try {
             await axios
                 .get(
@@ -37,7 +32,6 @@ const ChartContainer = ({ dispatch, currencyItems }) => {
                 )
                 .then((response) => {
                     diagramData = response.data
-                    // diagramData.unshift(["date", currencyTicker])
                     dispatch(setDiagramData(diagramData))
                     dispatch(setDiagramRangeReady(true))
                 })
@@ -77,7 +71,7 @@ const ChartContainer = ({ dispatch, currencyItems }) => {
 
     const rangeButtons = ["3Г", "1Г", "6M", "3M", "1M"]
     const SetSelect = (value) => {
-        debugger
+        
         const selectCurrencyItem = currencyItems.find(({ id }) => id === value)
         const currencyCode = selectCurrencyItem.currencyCode
         const currencyTicker = selectCurrencyItem.currencyTicker
@@ -108,19 +102,19 @@ const ChartContainer = ({ dispatch, currencyItems }) => {
                             </button>
                         </Link>
                         {/* <Link to="Currency-rates/mosaic-view">
-              <button type="button" className="btn btn-primary btn-sm">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="16"
-                  height="20"
-                  fill="currentColor"
-                  // class="bi bi-grid-fill"
-                  viewBox="0 0 16 16"
-                >
-                  <path d="M1 2.5A1.5 1.5 0 0 1 2.5 1h3A1.5 1.5 0 0 1 7 2.5v3A1.5 1.5 0 0 1 5.5 7h-3A1.5 1.5 0 0 1 1 5.5v-3zm8 0A1.5 1.5 0 0 1 10.5 1h3A1.5 1.5 0 0 1 15 2.5v3A1.5 1.5 0 0 1 13.5 7h-3A1.5 1.5 0 0 1 9 5.5v-3zm-8 8A1.5 1.5 0 0 1 2.5 9h3A1.5 1.5 0 0 1 7 10.5v3A1.5 1.5 0 0 1 5.5 15h-3A1.5 1.5 0 0 1 1 13.5v-3zm8 0A1.5 1.5 0 0 1 10.5 9h3a1.5 1.5 0 0 1 1.5 1.5v3a1.5 1.5 0 0 1-1.5 1.5h-3A1.5 1.5 0 0 1 9 13.5v-3z" />
-                </svg>
-              </button>
-            </Link> */}
+                            <button type="button" className="btn btn-primary btn-sm">
+                                <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    width="16"
+                                    height="20"
+                                    fill="currentColor"
+                                    // class="bi bi-grid-fill"
+                                    viewBox="0 0 16 16"
+                                >
+                                    <path d="M1 2.5A1.5 1.5 0 0 1 2.5 1h3A1.5 1.5 0 0 1 7 2.5v3A1.5 1.5 0 0 1 5.5 7h-3A1.5 1.5 0 0 1 1 5.5v-3zm8 0A1.5 1.5 0 0 1 10.5 1h3A1.5 1.5 0 0 1 15 2.5v3A1.5 1.5 0 0 1 13.5 7h-3A1.5 1.5 0 0 1 9 5.5v-3zm-8 8A1.5 1.5 0 0 1 2.5 9h3A1.5 1.5 0 0 1 7 10.5v3A1.5 1.5 0 0 1 5.5 15h-3A1.5 1.5 0 0 1 1 13.5v-3zm8 0A1.5 1.5 0 0 1 10.5 9h3a1.5 1.5 0 0 1 1.5 1.5v3a1.5 1.5 0 0 1-1.5 1.5h-3A1.5 1.5 0 0 1 9 13.5v-3z" />
+                                </svg>
+                            </button>
+                        </Link> */}
                     </span>
                     {/* Навигация>>> */}
                     <span className="select-container">
@@ -128,7 +122,7 @@ const ChartContainer = ({ dispatch, currencyItems }) => {
                             class="form-select"
                             aria-label="Default select example"
                             onChange={(e) => {
-                                debugger
+                                
                                 SetSelect(e.target.value)
                             }}
                         >
@@ -142,7 +136,6 @@ const ChartContainer = ({ dispatch, currencyItems }) => {
                 <span className="range-container">
                     {rangeButtons.map((i) => {
                         return (
-                            // <button type="button" class="btn btn-secondary">Secondary</button>
                             <button
                                 type="button"
                                 className={

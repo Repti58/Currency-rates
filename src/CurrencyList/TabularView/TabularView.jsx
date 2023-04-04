@@ -71,7 +71,7 @@ const TabularView = ({
                                 {currencyDate}
                             </th>
                             <th className="differense-head-cell" colSpan={2}>
-                                Изменение от <br></br> {prevCurrencyDate}
+                                Изм от <br></br> {prevCurrencyDate}
                             </th>
                         </tr>
                     </thead>
@@ -92,13 +92,13 @@ const TabularView = ({
                                         {i.currencyName}
                                     </Link>
                                 </td>
-                                {i.currencyTicker === "USD" ||
+                                {/* {i.currencyTicker === "USD" ||
                                 i.currencyTicker === "EUR" ||
                                 i.currencyTicker === "TRY" ? (
                                     <td className="currency-cell accent">{i.currencyPriceToday}</td>
-                                ) : (
+                                ) : ( */}
                                     <td className="currency-cell">{i.currencyPriceToday}</td>
-                                )}
+                                {/* )} */}
                                 {i.currencyPriceYesterday ? <td className="difference">{i.difference}</td> : <></>}
                                 {i.currencyPriceYesterday ? (
                                     <td className="">

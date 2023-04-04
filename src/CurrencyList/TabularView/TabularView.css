@@ -49,19 +49,21 @@ position: relative;
 }
 
 .date-picker {
+  height: 36px;
+  position: sticky;
+  top: 10px;
   display: block;
   margin-bottom: 30px;
-  /* border: solid black; */
 }
 
 .react-datepicker__input-container input {
   height: 36px;
   padding-left: 40px;
-  border: solid grey 1px;
+  border: solid rgb(195, 205, 221) 2px;
   border-radius: 5px;
-  /* background-color: #ffffff; */
   background: url("./calendar3.svg") no-repeat #ffffff 9px 6px;
   background-position: 5% 50%;
+  background-color: rgb(235, 218, 228);
 }
 
 
@@ -133,6 +135,6 @@ position: relative;
 }
 @media screen and (max-width: 405px){
   .table {
-    font-size: 10px;
+    font-size: 13px;
   }
 }

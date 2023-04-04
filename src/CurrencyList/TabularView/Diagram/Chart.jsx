@@ -1,4 +1,3 @@
-// import { Chart as Charts } from "react-google-charts"
 import { Chart as Charts } from "chart.js/auto"
 import { Line } from "react-chartjs-2"
 
@@ -10,9 +9,9 @@ const Chart = (props) => {
         labels: labels,
         datasets: [
             {
-                backgroundColor: "rgb(255, 99, 132)",
+                backgroundColor: "rgb(235, 218, 228)",
                 data: priceData,
-                fill: false,
+                fill: true,
                 tension: 0.1,
                 pointBackgroundColor: "rgb(78, 99, 137)",
                 pointRadius: 0,
@@ -33,12 +32,6 @@ const Chart = (props) => {
         },
     }
 
-    // const options = {
-    //     // title: `(${props.requestedCurrency[1]}) ${props.requestedCurrency[2]}`,
-    //     legend: "none",
-    //     colors: ["rgb(78, 99, 137)"],
-    //     lineWidth: 3,
-    // }
     return (
         <div className="diagram">
             <div className="currency-title">
@@ -57,21 +50,7 @@ const Chart = (props) => {
                     {props.diagramData ? props.diagramData[props.diagramData.length - 1][1] : null}
                 </span>
             </div>
-            <div className="chart-container">
-                {/* <div className="chart"> */}
-                {props.diagramData ? (
-                    <Line data={data} options={options} />
-                ) : // <Charts
-                //     // chartType="SteppedAreaChart"
-                //     chartType="LineChart"
-                //     data={props.diagramData}
-                //     width="100%"
-                //     height="100%"
-                //     options={options}
-                // />
-                null}
-            </div>
-            {/* </div> */}
+            <div className="chart-container">{props.diagramData ? <Line data={data} options={options} /> : null}</div>
         </div>
     )
 }
