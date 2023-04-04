@@ -1,6 +1,5 @@
 import React from "react"
 import ReactDatePicker from "react-datepicker"
-import { useSelector } from "react-redux"
 import { Link } from "react-router-dom/dist"
 import { setDiagramData, setRequestedCurrency } from "../../Redux/chartSlice"
 import "./TabularView.css"
@@ -14,8 +13,6 @@ const TabularView = ({
     setDate,
     selectedDateRequest,
 }) => {
-    
- 
     //Переводим, полученную из календаря дату в нужный формат<<<
     const selectDate = (date) => {
         const modifyDate = new Date(date).toLocaleDateString()
@@ -81,23 +78,20 @@ const TabularView = ({
                                 <td className="">{i.currencyTicker}</td>
                                 {/* <td className="">{i.currencyNominal}</td> */}
                                 <td className="">
-                                    <Link onClick={() => {
-                                      dispatch(setDiagramData(null))
-                                      dispatch(setRequestedCurrency([i.currencyCode, i.currencyTicker, i.currencyName]))
-                                    
-                                    }}
+                                    <Link
+                                        onClick={() => {
+                                            dispatch(setDiagramData(null))
+                                            dispatch(
+                                                setRequestedCurrency([i.currencyCode, i.currencyTicker, i.currencyName])
+                                            )
+                                        }}
                                         to={"/Chart"}
                                         className="link"
                                     >
                                         {i.currencyName}
                                     </Link>
                                 </td>
-                                {/* {i.currencyTicker === "USD" ||
-                                i.currencyTicker === "EUR" ||
-                                i.currencyTicker === "TRY" ? (
-                                    <td className="currency-cell accent">{i.currencyPriceToday}</td>
-                                ) : ( */}
-                                    <td className="currency-cell">{i.currencyPriceToday}</td>
+                                <td className="currency-cell">{i.currencyPriceToday}</td>
                                 {/* )} */}
                                 {i.currencyPriceYesterday ? <td className="difference">{i.difference}</td> : <></>}
                                 {i.currencyPriceYesterday ? (
