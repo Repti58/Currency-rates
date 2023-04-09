@@ -11,7 +11,7 @@ Currency rates
 ## Contains:
 - **Data on exchange rates for any date**
 - **Rates change display (amount and pointer indicator)**
-- **Switcher tabular view/mosaic view**
+- **Chart for different periods (month, 3 month, 6 month, year, 3 year)**
 
 ## Features:
 - **Adaptive layout**
@@ -19,5 +19,6 @@ Currency rates
 
 ## Appearance:
 <a href="https://repti58.github.io/Currency-rates/">
-  <img src="img/screenshot_cut.png"> 
+  <img src="img/list.png"> 
+  <img src="img/chart.png"> 
 </a>
