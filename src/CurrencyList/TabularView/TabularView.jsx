@@ -54,6 +54,8 @@ const TabularView = ({
                 {/* Если нет данных включам лоадер>>> */}
             </div>
 
+            <p className="info">*Данные предоставляются Центробанком РФ на последний рабочий день </p>
+
             {!currencyItems[0] ? (
                 <div className="no-data">За выбранный период данных не найдено</div>
             ) : !currencyItems[2] ? null : (
@@ -65,7 +67,7 @@ const TabularView = ({
                             <th>Валюта</th>
                             <th className="currency-hcell">
                                 Курс<br></br>
-                                {currencyDate}
+                                {currencyDate}*
                             </th>
                             <th className="differense-head-cell" colSpan={2}>
                                 Изм от <br></br> {prevCurrencyDate}
