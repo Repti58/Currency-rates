@@ -35,11 +35,11 @@ const Chart = (props) => {
     return (
         <div className="diagram">
             <div className="currency-title">
-                <div className="currency-title__title">{`( ${props.requestedCurrency[1]} ) ${props.requestedCurrency[2]}`}</div>
-                <span>Текущий курс - </span>
+                <div className="currency-title__title">{`${props.requestedCurrency[2]}. Текущий курс:`}</div>
+                <span>{`1 ${props.requestedCurrency[1]} = `}</span>
                 <span
                     className={
-                        props.diagramData
+                        props.diagramData 
                             ? props.diagramData[props.diagramData.length - 1][1] >
                               props.diagramData[props.diagramData.length - 2][1]
                                 ? "currency-title__price currency-title__price_up"
@@ -47,7 +47,10 @@ const Chart = (props) => {
                             : null
                     }
                 >
-                    {props.diagramData ? props.diagramData[props.diagramData.length - 1][1] : null}
+                   {} {props.diagramData ? props.diagramData[props.diagramData.length - 1][1] : null}
+                </span>
+                <span>
+                    RUB
                 </span>
             </div>
             <div className="chart-container">{props.diagramData ? <Line data={data} options={options} /> : null}</div>

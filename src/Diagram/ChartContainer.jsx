@@ -2,7 +2,7 @@ import axios from "axios"
 import { useEffect } from "react"
 import { useSelector } from "react-redux"
 import { Link } from "react-router-dom"
-import { setDiagramData, setDiagramRangeReady, setSelectedRange, setRequestedCurrency } from "../../../Redux/chartSlice"
+import { setDiagramData, setDiagramRangeReady, setSelectedRange, setRequestedCurrency } from "../Redux/chartSlice"
 import Chart from "./Chart"
 import "./Chart.css"
 
