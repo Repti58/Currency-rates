@@ -50,7 +50,7 @@ const Chart = (props) => {
                    {} {props.diagramData ? props.diagramData[props.diagramData.length - 1][1] : null}
                 </span>
                 <span>
-                    RUB
+                    {` RUB`}
                 </span>
             </div>
             <div className="chart-container">{props.diagramData ? <Line data={data} options={options} /> : null}</div>
