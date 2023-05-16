@@ -89,7 +89,7 @@
 
 .chart-container {
     padding: auto;
-    height: 460px;
+    max-height: 430px;
     width: 100%;
     text-align: center;
     display: flex;
